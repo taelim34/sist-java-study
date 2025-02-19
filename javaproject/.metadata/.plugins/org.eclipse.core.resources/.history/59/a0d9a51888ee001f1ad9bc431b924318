@@ -19,7 +19,5 @@ public class IfTest_07 {
 			System.out.println("a는 짝수입니다");
 
 	}
-	
-	
 
 }
