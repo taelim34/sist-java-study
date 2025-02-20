@@ -18,7 +18,8 @@ public class Quiz0219_13 {
 		Scanner sc = new Scanner(System.in);
 		
 		String name;
-		int money,amount,tot,dc;
+		int money,amount,tot;
+		int dc=0;              // 메소드에서는 결과가 없을때는 초기값 설정 클래스 안에서는 미지정 
 		
 		System.out.println("입고된 상품명은?");
 		name = sc.nextLine();
@@ -26,14 +27,14 @@ public class Quiz0219_13 {
 		amount = sc.nextInt();
 		System.out.println("단가는?");
 		money = sc.nextInt();
-		System.out.println("===============");
+		System.out.println("====================");
 		
 		tot = amount*money;
-		System.out.printf("아이폰 6개는 총 %d 입니다\n(단 5개 이상은 10프로 DC 됩니다)",tot);
-		System.out.println("===============");
+		System.out.printf("아이폰 6개는 총 %d 입니다\n(단 5개 이상은 10프로 DC 됩니다)\n",tot);
+		System.out.println("====================");
 		
-		
-	    System.out.println("dc된 최종금액:"+(amount>=5?tot*0.9:tot));
+		if (amount>=5) 
+	    System.out.println("dc된 최종금액:"+(amount>=5?tot*0.9:0)+"원");
 		
 		
 		
