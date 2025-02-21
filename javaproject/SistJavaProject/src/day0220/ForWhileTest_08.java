@@ -18,7 +18,7 @@ public class ForWhileTest_08 {
 		{
 			System.out.print(a--+" ");
 		}
-		System.out.println();zs 
+		System.out.println();
         //5 4 3 2 1을 for문으로 출력해보세요
 		for (int i=5;i>=1;i--)
 		{
