@@ -1,0 +1,22 @@
+package day0224;
+
+import java.util.Scanner;
+
+public class ArrayScanSumRank_12 {
+
+	public static void main(String[] args) {
+		/*
+		 * 입력할 인원수를 먼저 입력후 그인원수 만큼 이름과 점수를 입력한후 
+		 * 입력한 데이타도 출력하고 전체 합계와 평균을 구해보자
+		 * 
+		 * */
+		Scanner sc = new Scanner(System.in);
+		
+		String [] name;
+		int inwon;
+		int [] score;
+		int tot = 0;
+
+	}
+
+}
