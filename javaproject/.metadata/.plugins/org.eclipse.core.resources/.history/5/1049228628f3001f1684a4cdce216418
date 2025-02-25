@@ -1,0 +1,10 @@
+spackage day0225;
+
+public class Rnd {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
