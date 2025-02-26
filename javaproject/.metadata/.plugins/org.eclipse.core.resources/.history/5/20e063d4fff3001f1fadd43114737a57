@@ -1,0 +1,41 @@
+package day0226;
+
+import java.util.Scanner;
+
+public class ReviewQuiz_07 {
+	
+	
+	public static void quiz1()
+	{
+		//문제1: 숫자n을 입력하면 1부터 n까지의 합계를 구하시오(for or while)
+		//1부터 n까지의 합계:***
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int n=0;
+		
+		for(int i=0<n;i++)
+			
+		
+		
+	}	
+	public static void quiz2()
+	{
+		
+		
+		
+	}
+	public static void quiz3()
+	{
+		
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

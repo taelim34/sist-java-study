@@ -23,7 +23,7 @@ public class QuizSyartsWithSearch_09 {
 		 * */
 		
 		String [] celeb = {"공유","신민아","이병재","손흥민","이강인","이효리","이진","손미나"};
-		int cnt=0;
+		int cnt;
 		boolean flag;
 		Scanner sc = new Scanner(System.in);
 		String search; //이름검색 
@@ -40,6 +40,7 @@ public class QuizSyartsWithSearch_09 {
 			}
 			
 			flag = false;
+			cnt=0;
 			
 			for (int i=0;i<celeb.length;i++)
 			{
@@ -51,18 +52,21 @@ public class QuizSyartsWithSearch_09 {
 				}
 				
 			}
-		
 			
-			if(flag)
+			/*if(flag)
 			{
 				System.out.println("총"+cnt+"명 검색");
-				cnt=0;
 			}
 			else
 			{
-				System.out.println(search+" 씨 성을 가진 연예인은 없습니다");
+				System.out.println(search+"씨 성을 가진 연예인은 없습니다");
 				
-			}
+			}*/
+			if(cnt==0)
+				System.out.println(search+"성을 가진 사람은 없습니다.");
+			else
+				System.out.println("\t"+cnt+"명 검색");
+			System.out.println();
 			
 			
 			

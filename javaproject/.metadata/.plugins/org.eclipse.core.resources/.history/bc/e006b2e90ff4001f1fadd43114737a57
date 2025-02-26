@@ -1,0 +1,24 @@
+package day0226;
+
+public class Ex11CardTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Ex10CardTest.width=10;
+		Ex10CardTest.height=20;
+		
+		
+		System.out.println(Ex10CardTest.width);
+		System.out.println(Ex10CardTest.height);
+		
+		//인스턴스 변수생성
+		Ex10CardTest c1=new Ex10CardTest();
+		
+		System.out.println(c1.kind);
+		System.out.println(c1.height);
+		System.out.println(c1.number);
+
+	}
+
+}

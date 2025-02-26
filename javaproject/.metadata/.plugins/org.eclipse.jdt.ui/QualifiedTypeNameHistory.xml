@@ -6,13 +6,16 @@
     <fullyQualifiedTypeName name="java.beans.JavaBean"/>
     <fullyQualifiedTypeName name="day0219.ScanIf_11"/>
     <fullyQualifiedTypeName name="java.awt.GradientPaint"/>
-    <fullyQualifiedTypeName name="java.lang.ScopedValue"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="day0221.ForSumScan_08"/>
     <fullyQualifiedTypeName name="java.awt.geom.Arc2D.Double"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="java.lang.ScopedValue"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
 </qualifiedTypeNameHistroy>
