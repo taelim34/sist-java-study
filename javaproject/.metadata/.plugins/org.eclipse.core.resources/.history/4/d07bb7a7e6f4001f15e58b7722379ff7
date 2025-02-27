@@ -82,15 +82,13 @@ public class ReviewQuiz_08 {
 		for(int i=0;i<su.length-1;i++)
 		{
 			for(int j=i+1;j<su.length;j++)
-			{
 				if(su[i]>su[j])
 				{
 					int temp = su[i];
 					su[i]=su[j];
-					su[j]=temp;
+					su[j]=su[i];
 					
 				}	
-			}
 		}
 		
 		for(int i = 0;i<su.length;i++)
