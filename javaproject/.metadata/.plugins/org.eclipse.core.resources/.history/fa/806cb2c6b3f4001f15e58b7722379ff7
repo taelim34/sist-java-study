@@ -1,0 +1,34 @@
+package day0227;
+
+public class Ex5ConstSetter {
+	
+	String name;
+	int age;
+	
+	//생성자
+	public Ex5ConstSetter(String name) {
+		this.name=name;
+	}
+	
+	public Ex5ConstSetter(String name,int age) {
+		this.name=name;
+		this.age=age;
+		
+	}
+	
+	//getter메서드 _ 출력용
+	public String getName()
+	{
+		return name;
+	}
+	public int getAge() 
+	{
+		return age;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

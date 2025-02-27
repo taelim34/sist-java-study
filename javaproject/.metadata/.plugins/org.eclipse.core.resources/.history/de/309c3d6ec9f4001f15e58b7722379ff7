@@ -1,0 +1,23 @@
+package day0227;
+
+public class Ex8GetInstance {
+	
+	class Happy{
+		public Happy() {
+			System.out.println("생성자 1번");
+			
+		}
+		public Happy(String msg) {
+			System.out.println("문자열"+msg);
+		}
+		public Happy(int age) {
+			
+		}
+	}
+////////////////////////////////////
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

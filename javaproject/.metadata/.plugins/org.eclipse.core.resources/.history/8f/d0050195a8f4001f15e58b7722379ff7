@@ -1,0 +1,18 @@
+package day0227;
+class Myinfo{
+	
+	private String name;
+	private int age;
+}
+
+public class Ex3WorkerMethod {
+
+	public static void main(String[] args) {
+		// 
+		
+		Myinfo my1 = new Myinfo();
+		my1.name = "이수연";
+
+	}
+
+}

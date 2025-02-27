@@ -1,0 +1,35 @@
+package day0227;
+
+class Mydata{
+	
+	private int year;
+	private int month;
+	private int day;
+	
+	//명시적 생성자 (인자 3개)
+	public Mydata(int year) {
+		this year = year;
+	}
+    public Mydata(int month) {
+		this month = month;
+	}
+     =public Mydata(int day) {
+	    this day=day;
+    }
+	
+	
+	
+	//getter메서드
+	
+	
+	
+}
+//////////////////////////////////////
+public class Ex6ObjectTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

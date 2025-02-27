@@ -19,22 +19,42 @@ public class QuizObjectTest {
 		 * 취미: 여행
 		 * 
 		 * */
-		 QuizObject.processName="쌍용 교육센터 자바교육 4강의장";
-         QuizObject ab1 = new QuizObject();
-         QuizObject ab2 = new QuizObject();
-         ab1.setStuname("손흥민");
-         ab2.setStuname("김연아");
-         ab1.setAge(29);
-         ab2.setAge(26);
-         
-         
-         
-         System.out.println("과정명: "+QuizObject.processName);
-         System.out.println("==========================");
-         String city = ab1.getCity();
-         System.out.println("이름: "+ab1.stuName);
-         System.out.println("나이: "+ab1.age);
-         
-	}
+		 QuizObject.processName = "쌍용 교육센터 자바교육 4강의장";
+
+	        // 학생1 객체생성 및 값 설정
+	        QuizObject stu1 = new QuizObject();
+	        stu1.stuName="손흥민";
+	        stu1.age=29;
+	        stu1.setCity("부산");
+	        stu1.setHobby("헬스");
+	        String city1 = stu1.getCity();
+	        String hobby1= stu1.getHobby();
+
+	        // 학생2 객체생성 및 값 설정
+	        QuizObject stu2 = new QuizObject();
+	        stu2.stuName="김연아";
+	        stu2.age=26;
+	        stu2.setCity("서울");
+	        stu2.setHobby("여행");
+	        String city2 = stu2.getCity();
+	        String hobby2= stu2.getHobby();
+
+	        // 출력
+	        System.out.println("과정명: " + QuizObject.processName);
+	        System.out.println("============================");
+
+	        System.out.println("학생1정보");
+	        System.out.println("이름: " + stu1.stuName);
+	        System.out.println("나이: " + stu1.age + "세");
+	        System.out.println("지역: " + city1);
+	        System.out.println("취미: " + hobby1);
+	        System.out.println();
+
+	        System.out.println("학생2정보");
+	        System.out.println("이름: " + stu2.stuName);
+	        System.out.println("나이: " + stu2.age + "세");
+	        System.out.println("지역: " + city2);
+	        System.out.println("취미: " + hobby2);
+	    }
 
 }

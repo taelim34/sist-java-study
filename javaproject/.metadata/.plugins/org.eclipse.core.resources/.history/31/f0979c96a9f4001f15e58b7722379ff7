@@ -1,0 +1,42 @@
+package day0227;
+class Myinfo{
+	
+	private String name;
+	private int age;
+	
+	
+	//setter 메서드
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+	
+	
+	//getter 메서드
+	public String getName()
+	{
+		return name;
+	}
+	public int getAge() 
+	{
+		return age;
+	}
+}
+
+public class Ex3WorkerMethod {
+
+	public static void main(String[] args) {
+		// 
+		
+		Myinfo my1 = new Myinfo();
+		my1.setName("이수연");
+		my1.setAge(22);
+		System.out.println(my1.getName());
+
+	}
+
+}

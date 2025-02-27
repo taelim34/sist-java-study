@@ -1,0 +1,17 @@
+package day0227;
+
+class Junbo{
+	
+	private String name;
+	private String age;
+	private String job;
+	private String hobby;
+}
+
+public class Ex10ObjectTest {
+
+	public static void main(String[] args) {
+		// 
+	}
+
+}
