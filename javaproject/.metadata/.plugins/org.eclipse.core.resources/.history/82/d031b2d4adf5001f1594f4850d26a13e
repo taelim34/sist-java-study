@@ -1,0 +1,67 @@
+package day0228;
+
+class StudentScore{
+	
+	private String stuName;
+	private int java;
+	private int html;
+	private int mysql;
+	
+	//setters & getters
+	public String getStuName() {
+		return stuName;
+	}
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+	public int getJava() {
+		return java;
+	}
+	public void setJava(int java) {
+		this.java = java;
+	}
+	public int getHtml() {
+		return html;
+	}
+	public void setHtml(int html) {
+		this.html = html;
+	}
+	public int getMysql() {
+		return mysql;
+	}
+	public void setMysql(int mysql) {
+		this.mysql = mysql;
+	}
+	
+	public double getTotal() {
+		int tot = 0;
+		tot = java+html+mysql;
+		
+		return tot;
+		
+	}
+	public double getAverage() {
+		double avg;
+		avg = (java+html+mysql/3.0);
+		return avg;
+		
+	}
+	public void getPungga() {
+		if ((java+html+mysql/3.0)>=90)
+		{
+			System.out.println("장학생");
+		}
+		else if((java+html+mysql/3.0)>=80)
+		{
+			System.out.println("우수생");
+		}
+		else 
+			System.out.println("재수강");
+	}
+}
+
+
+
+public class StudentScoreResult {
+
+}

@@ -1,0 +1,17 @@
+package day0228;
+
+class StuInfos{
+	private String stuName;
+	private String mbti;
+	private int age;
+	
+}
+
+public class Ex10ArrQuiz {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

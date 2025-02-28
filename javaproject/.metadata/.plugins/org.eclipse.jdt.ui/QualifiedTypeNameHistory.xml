@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="day2018.CalendarTest_09"/>
-    <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="java.beans.JavaBean"/>
     <fullyQualifiedTypeName name="day0219.ScanIf_11"/>
     <fullyQualifiedTypeName name="java.awt.GradientPaint"/>
@@ -25,6 +24,38 @@
     <fullyQualifiedTypeName name="day0226.Ex10Student"/>
     <fullyQualifiedTypeName name="day0226.Ex11Counter"/>
     <fullyQualifiedTypeName name="day0226.Ex12Info"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="day0226.QuizObject"/>
+    <fullyQualifiedTypeName name="day0227.Ex1Object"/>
+    <fullyQualifiedTypeName name="day0227.Const"/>
+    <fullyQualifiedTypeName name="day0227.Myinfo"/>
+    <fullyQualifiedTypeName name="day0227.Orange"/>
+    <fullyQualifiedTypeName name="java.applet.Applet"/>
+    <fullyQualifiedTypeName name="day0227.Apple"/>
+    <fullyQualifiedTypeName name="day0227.Banana"/>
+    <fullyQualifiedTypeName name="day0227.Ex5ConstSetter"/>
+    <fullyQualifiedTypeName name="day0227.Ex6ObjectTest"/>
+    <fullyQualifiedTypeName name="day0227.Mydata"/>
+    <fullyQualifiedTypeName name="day0227.Ex7InfoTest"/>
+    <fullyQualifiedTypeName name="day0227.YourInfo"/>
+    <fullyQualifiedTypeName name="day0227.Ex8GetInstance.Happy"/>
+    <fullyQualifiedTypeName name="day0227.Ex8GetInstance"/>
+    <fullyQualifiedTypeName name="day0227.Happy"/>
+    <fullyQualifiedTypeName name="day0227.Mycar"/>
+    <fullyQualifiedTypeName name="day0227.Junbo"/>
+    <fullyQualifiedTypeName name="java.io.ObjectInputStream.GetField"/>
+    <fullyQualifiedTypeName name="day0227.Ex11Member"/>
+    <fullyQualifiedTypeName name="day0227.Ex12ObjectTest"/>
+    <fullyQualifiedTypeName name="day0227.Input"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="day0227.QuizShop"/>
+    <fullyQualifiedTypeName name="day0228.Coffee"/>
+    <fullyQualifiedTypeName name="day0228.Ex2ArrayConst"/>
+    <fullyQualifiedTypeName name="day0228.Student"/>
+    <fullyQualifiedTypeName name="day0228.Myshop"/>
+    <fullyQualifiedTypeName name="day0228.Sangjum"/>
+    <fullyQualifiedTypeName name="day0228.Test1"/>
+    <fullyQualifiedTypeName name="day0228.MyBeg"/>
+    <fullyQualifiedTypeName name="day0228.Score"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="day0228.StuInfos"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,14 @@
+package day0228;
+
+public class Ex5CallByValRef {
+	
+//데이터 타입
+//기본형: int,long,double.char....
+//레퍼런스형: 클래스형태로 된것,배열..
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

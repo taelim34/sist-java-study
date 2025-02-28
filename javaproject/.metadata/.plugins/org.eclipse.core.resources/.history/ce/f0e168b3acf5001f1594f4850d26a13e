@@ -1,0 +1,56 @@
+package day0228;
+
+class StudentScore{
+	
+	private String stuName;
+	private int java;
+	private int html;
+	private int mysql;
+	
+	//setters & getters
+	public String getStuName() {
+		return stuName;
+	}
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+	public int getJava() {
+		return java;
+	}
+	public void setJava(int java) {
+		this.java = java;
+	}
+	public int getHtml() {
+		return html;
+	}
+	public void setHtml(int html) {
+		this.html = html;
+	}
+	public int getMysql() {
+		return mysql;
+	}
+	public void setMysql(int mysql) {
+		this.mysql = mysql;
+	}
+	
+	public double getTotal() {
+		int tot = 0;
+		double avg;
+		tot = java+html+mysql;
+		
+		return tot;
+		
+	}
+	public String getAverage() {
+		double avg = 0.0;
+		if()
+		return 0.0;
+		
+	}
+}
+
+
+
+public class StudentScoreResult {
+
+}
