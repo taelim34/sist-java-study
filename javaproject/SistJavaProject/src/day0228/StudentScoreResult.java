@@ -44,7 +44,7 @@ class StudentScore{
 	}
 	public double getAverage() {
 		double avg;
-		avg = ((java+html+mysql)/3.0);
+		avg = (getTotal()/3.0);
 		return avg;
 		
 	}
@@ -121,6 +121,7 @@ public class StudentScoreResult {
 			System.out.println("mysql");
 			int sql=Integer.parseInt(sc.nextLine());
 		
+			stuScores[i] = new StudentScore();
 			stuScores[i].setJava(java);
 			stuScores[i].setHtml(ht);
 			stuScores[i].setMysql(sql);

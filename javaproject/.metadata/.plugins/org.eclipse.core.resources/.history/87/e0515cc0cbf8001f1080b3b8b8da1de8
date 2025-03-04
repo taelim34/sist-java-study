@@ -1,0 +1,24 @@
+package day0304;
+
+interface GameA{
+	
+	public void play();
+}
+interface GameB{
+	
+	public void srop();
+}
+
+class MyGame implements GameA,GameB{
+	
+	
+}
+
+public class Ex13InterMain {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}

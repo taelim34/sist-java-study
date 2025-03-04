@@ -1,0 +1,16 @@
+package day0304;
+
+//자식
+public class Ex2Manager {
+	
+	String sname;
+	int salary;
+	
+	
+	//명시적생성자
+	public Ex2Manager(String sname,String sal) {
+		
+	}
+	//출력 메소드
+
+}

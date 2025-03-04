@@ -1,0 +1,18 @@
+package day0304;
+
+class Shop{
+	
+}
+
+
+class Myget{
+	
+}
+public class Ex4Inherit {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

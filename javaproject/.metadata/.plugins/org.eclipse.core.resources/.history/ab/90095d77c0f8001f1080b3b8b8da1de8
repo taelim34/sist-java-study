@@ -1,0 +1,14 @@
+package day0304;
+
+abstract class Board{
+	public abstract void process();
+}
+
+public class Ex10Abst {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
