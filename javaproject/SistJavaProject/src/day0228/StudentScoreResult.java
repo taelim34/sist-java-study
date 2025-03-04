@@ -35,7 +35,7 @@ class StudentScore{
 		this.mysql = mysql;
 	}
 	
-	public double getTotal() {
+	public int getTotal() {
 		int tot = 0;
 		tot = java+html+mysql;
 		
@@ -44,22 +44,22 @@ class StudentScore{
 	}
 	public double getAverage() {
 		double avg;
-		avg = (java+html+mysql/3.0);
+		avg = ((java+html+mysql)/3.0);
 		return avg;
 		
 	}
-	public void getPungga() {
+	public String getPungga() {
 		String pungga = null;
 		if ((java+html+mysql/3.0)>=90)
 		{
-			System.out.println("장학생");
+			pungga =("장학생");
 		}
 		else if((java+html+mysql/3.0)>=80)
 		{
-			System.out.println("우수생");
+			pungga =("우수생");
 		}
 		else 
-			System.out.println("재수강");
+			pungga =("재수강");
 		return pungga;
 	}
 	
@@ -82,13 +82,13 @@ public class StudentScoreResult {
 		StudentScore.showTitle();
 		for(StudentScore s : stuScore) {
 			
-			System.out.println(s.getStuName()+"\t"+s.getJava()+"\t"+s.getHtml()+
-					"\t"+s.getMysql()+"\t"+s.getTotal()+"\t"+s.getAverage()+"\t"+s.getPungga());
+			System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\t%s\n",
+					s.getStuName(),s.getJava(),s.getHtml(),s.getMysql(),s.getTotal(),s.getAverage(),s.getPungga());
 		}
 		
 	}
 	
-	
+
 	
 	
 	
@@ -112,19 +112,24 @@ public class StudentScoreResult {
 			System.out.println("이름");
 			String name = sc.nextLine();
 			
-			System.out.println("급여");
-			int pay = Integer.parseInt(sc.nextLine());
+			System.out.println("자바");
+			int java = Integer.parseInt(sc.nextLine());
 			
-			System.out.println("가족수는?");
-			int fs = Integer.parseInt(sc.nextLine());
+			System.out.println("html");
+			int ht = Integer.parseInt(sc.nextLine());
 			
-			System.out.println("초과근무시간?");
-			int ts=Integer.parseInt(sc.nextLine());
+			System.out.println("mysql");
+			int sql=Integer.parseInt(sc.nextLine());
 		
+			stuScores[i].setJava(java);
+			stuScores[i].setHtml(ht);
+			stuScores[i].setMysql(sql);
+			stuScores[i].setStuName(name);
+			
+			
 		
-		
+		}
+		showStuInfo(stuScores);
 	}
 	
-	
-
 }

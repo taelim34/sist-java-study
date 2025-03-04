@@ -120,18 +120,18 @@ public class EmpSalery {
 			int fs = Integer.parseInt(sc.nextLine());
 			
 			System.out.println("mysql");
-			int ts=Integer.parseInt(sc.nextLine());
+			int sq=Integer.parseInt(sc.nextLine());
 			
 			//setter메서드로 emp클래스에 데이터 넣기
 			emp[i].setName(name);
 			emp[i].setPay(pay);
 			emp[i].setFamSu(fs);
-			emp[i].setTimeSu(ts);
+			emp[i].setTimeSu(sq);
 			
-			showEmpSalery(emp);
+			
 			
 		}
-		
+		showEmpSalery(emp);
 
 	}
 	
