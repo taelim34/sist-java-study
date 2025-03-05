@@ -1,0 +1,16 @@
+package day0305;
+
+
+class Company{
+	
+	private String staff,position; //직원명 직급
+}
+/////////////////
+public class QuizClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

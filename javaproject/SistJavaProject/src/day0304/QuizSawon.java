@@ -39,7 +39,7 @@ class Sawon{
 	//최종급여 출력
     public void showSawon() {
     	System.out.println("================================================");
-    	System.out.println("사원명\t부서\t기본급\t보너스\t총급여\n");
+    	System.out.println("사원명\t부서\t기본급\t보너스\t총급여");
     	System.out.printf("%s\t%s\t%d\t%d\t%d",sawonName,buseo,gibonpay,getBonus(),(gibonpay+getBonus()));
     }
 	

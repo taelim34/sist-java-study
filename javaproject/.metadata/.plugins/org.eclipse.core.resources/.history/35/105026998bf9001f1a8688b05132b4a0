@@ -1,0 +1,15 @@
+package day0305;
+
+public class Ex12ThreadSleep {
+	
+	public static void main(String[] args) {
+		
+		System.out.println("안녕하세요");
+		
+		
+		System.out.println("2초후 작별합시다~~");
+		Thread.sleep(2000);
+		System.out.println("안녕하 가세요~~~");
+	}
+
+}
