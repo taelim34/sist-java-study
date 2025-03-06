@@ -1,0 +1,23 @@
+package day0306;
+
+public class QuizReadWrite {
+	
+	
+	public int getMenu()
+	{
+		
+		//1.상품추가 2.상품전체입고현황 9.종료
+		while(true)
+		{
+			System.out.println("1.상품추가\t2.상품전체입고현황\t9.종료");
+		}
+		
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
