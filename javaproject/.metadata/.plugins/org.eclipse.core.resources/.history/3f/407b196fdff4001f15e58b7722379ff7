@@ -1,9 +1,0 @@
-package day0227;
-
-public class QuizShop {
-	static String storName;
-	private String name;
-	private int amount;
-	private int price;
-
-}

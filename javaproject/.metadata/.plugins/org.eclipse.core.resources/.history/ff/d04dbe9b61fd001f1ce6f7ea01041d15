@@ -1,0 +1,45 @@
+package day0310;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class BtnArrayEvent7 extends JFrame{
+
+	Container cp;
+	JButton [] btn=new JButton[5];
+	String [] btnLabel = {"Red","Yellow","Blue","Green","White"};
+	Color [] btnColor = {Color.red,Color.yellow,Color.blue,Color.green,Color.white};
+	
+	public BtnArrayEvent7(String title) {
+		super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+		
+		//위치 너비
+		this.setBounds(1400, 100, 500, 800);
+		
+		
+		cp=this.getContentPane();
+		cp.setBackground(new Color(127, 255, 212));
+		initDesign();
+		this.setVisible(true);
+	}
+
+	public void initDesign()
+	{
+		//panel 은 기본이 FlowLAyout
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.orange);
+		this.setLayout(new FlowLayout());
+	}
+	public static void main(String[] args) {
+		
+		new BtnArrayEvent7("스윙배열이벤트 #7");
+		
+		
+		
+	}
+}

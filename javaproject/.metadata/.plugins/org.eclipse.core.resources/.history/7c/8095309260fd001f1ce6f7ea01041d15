@@ -1,0 +1,39 @@
+package day0310;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class BtnArrayEvent7 extends JFrame{
+
+	Container cp;
+	JButton [] btn=new JButton[5];
+	JButton [] btnLabel = {"Red","Yellow","Blue","Green","White"};
+	
+	public BtnArrayEvent7(String title) {
+		super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+		
+		//위치 너비
+		this.setBounds(1400, 100, 500, 800);
+		
+		
+		cp=this.getContentPane();
+		cp.setBackground(new Color(127, 255, 212));
+		initDesign();
+		this.setVisible(true);
+	}
+
+	public void initDesign()
+	{
+		
+	}
+	public static void main(String[] args) {
+		
+		new BtnArrayEvent7("스윙배열이벤트 #7");
+		
+		
+		
+	}
+}

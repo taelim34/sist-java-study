@@ -1,0 +1,40 @@
+package day0310;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class QuizSwing extends JFrame{
+	
+	Container cp;
+	JLabel lblnum1,lblnum2;
+	JTextField tfSu1,tfSu2;
+
+	public QuizSwing(String title) {
+		super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+		
+		//위치 너비
+		this.setBounds(500, 100, 800, 500);
+		
+		cp=this.getContentPane();
+		cp.setBackground(new Color(127, 255, 212));
+		initDesign();
+		this.setVisible(true);
+	}
+	public void initDesign()
+	{
+		
+		
+	}
+
+	public static void main(String[] args) {
+		
+		QuizSwing sw1 = new QuizSwing("스윙 #10");
+		
+		
+		
+	}
+}
