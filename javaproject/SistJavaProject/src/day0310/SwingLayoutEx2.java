@@ -19,6 +19,7 @@ public class SwingLayoutEx2 extends JFrame{
 		
 		
 		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cp.setBackground(new Color(127, 255, 212));
 		
 		//버튼생성

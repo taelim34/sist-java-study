@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ArrayRndEvent9 extends JFrame{
+public class ArrayRndEvent9 extends JFrame implements ActionListener{
 	
 	Container cp;
 	JButton btnRandom,btnAdd,btn;
@@ -29,6 +29,7 @@ public class ArrayRndEvent9 extends JFrame{
 		cp=this.getContentPane();
 		cp.setBackground(new Color(127, 255, 212));
 		initDesign();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 	public void initDesign()
@@ -63,28 +64,12 @@ public class ArrayRndEvent9 extends JFrame{
 		btnRandom = new JButton("라벨색상변경");
 		
 		this.add("South", btnRandom);
+		//버튼에 이벤트추가ㅣ
+		btnRandom.addActionListener(this);
 		
-		//버튼을 누르면 라벨부분 랜덤색상 변하기 이벤트
-		btnRandom.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				for(int i=0;i<lblFood.length;i++)
-				{
-					lblFood[i]=new JLabel(str[i],JLabel.CENTER);
-					
-					//r,g,b 랜덤색상 얻기
-					int r=(int)(Math.random()*256); //0~255
-					int g=(int)(Math.random()*256); //0~255
-					int b=(int)(Math.random()*256); //0~255
-					
-					lblFood[i].setBackground(new Color(r, g, b));
-				}
-				
-			}
-		});
 	}
+	
+	
 
 	public static void main(String[] args) {
 		
@@ -92,5 +77,21 @@ public class ArrayRndEvent9 extends JFrame{
 		
 		
 		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<lblFood.length;i++)
+		{
+			
+			//r,g,b 랜덤색상 얻기
+			int r=(int)(Math.random()*256);  //0~255
+			int g=(int)(Math.random()*256);
+			int b=(int)(Math.random()*256);
+			
+			lblFood[i].setBackground(new Color(r, g, b));
+			
+			
+		}
 	}
 }
