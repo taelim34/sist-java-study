@@ -1,0 +1,14 @@
+package day0224;
+
+public class ArrayMaxMin_11 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int [] nums = {45,35,99,65,72,54,31,23,86,75};
+		
+		System.out.println("nums의 갯수: "+nums.length);
+
+	}
+
+}
