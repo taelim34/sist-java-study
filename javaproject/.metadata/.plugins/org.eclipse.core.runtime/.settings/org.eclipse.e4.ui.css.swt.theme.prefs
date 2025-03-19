@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 themeid=org.eclipse.e4.ui.css.theme.e4_preview
+=======
+themeid=org.eclipse.e4.ui.css.theme.e4_dark
+>>>>>>> eb8ef4ce1581818db53189dd818071a047426c4a

@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+<<<<<<< HEAD
+=======
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.lang.classfile.instruction.BranchInstruction"/>
+    <fullyQualifiedTypeName name="javax.imageio.plugins.tiff.GeoTIFFTagSet"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="day0306.QuizReadWrite"/>
+    <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+    <fullyQualifiedTypeName name="javax.swing.border.TitledBorder"/>
+    <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+    <fullyQualifiedTypeName name="javax.swing.border.LineBorder"/>
+>>>>>>> eb8ef4ce1581818db53189dd818071a047426c4a
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.lang.classfile.instruction.NewMultiArrayInstruction"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
@@ -42,12 +55,19 @@
     <fullyQualifiedTypeName name="java.io.FileReader"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="javax.print.DocFlavor.STRING"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="java.text.NumberFormat"/>
+=======
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.text.NumberFormat"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+>>>>>>> eb8ef4ce1581818db53189dd818071a047426c4a
     <fullyQualifiedTypeName name="java.util.Vector"/>
     <fullyQualifiedTypeName name="java.awt.event.WindowListener"/>
     <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.io.FileWriter"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="day0319.ConnectTestEx1"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
@@ -60,4 +80,6 @@
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="day0217.HelloJava"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
+=======
+>>>>>>> eb8ef4ce1581818db53189dd818071a047426c4a
 </qualifiedTypeNameHistroy>

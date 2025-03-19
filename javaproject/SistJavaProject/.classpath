@@ -6,10 +6,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/user/Downloads/ojdbc11.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+>>>>>>> eb8ef4ce1581818db53189dd818071a047426c4a
 	<classpathentry kind="output" path="bin"/>
 </classpath>
