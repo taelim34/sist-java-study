@@ -1,96 +1,55 @@
 package day0319;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectTestEx3 {
-	
-	
-	static final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 
-	public void connectShop () {
-		
+	static final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	
+	//shop + cart
+	//카트담긴일련번호 idx, 상품명,색상,갯수,구입한날짜
+	
+	//없으신분은 emp+dept
+	//사원번호 직원명 직급(job)  부서명 급여 입사일자
+	public void shopCart()
+	{
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;
 		
-		String sql="SELECT \r\n"
-				+ "    c.idx, \r\n"
-				
-				+ "    s.sanpum, \r\n"
-				+ "    s.color, \r\n"
-				+ "    c.cnt, \r\n"
-				+ "    c.guipday\r\n"
-				+ "FROM \r\n"
-				+ "    (\r\n"
-				+ "        SELECT idx, num, cnt, guipday FROM cart1\r\n"
-				+ "        UNION\r\n"
-				+ "        SELECT idx, num, cnt, guipday FROM cart2\r\n"
-				+ "    ) c\r\n"
-				+ "JOIN shop s\r\n"
-				+ "    ON c.num = s.num ";
+		String sql="select idx,sangpum,color,cnt,guipday from cart1 c,shop s where c.num=s.num";
 		
 		try {
-			conn=DriverManager.getConnection(URL,"taelim" ,"a1234" );
-			
-			System.out.println("success");
-			
+			conn=DriverManager.getConnection(URL, "taelim", "a1234");
+			System.out.println("성공");
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 			
-			System.out.println("게시판 댓글 리스트");
+			System.out.println("장바구니번호\t상품명\t색상\t갯수\t구입날짜");
+			System.out.println("===========================================");
 			
-			
-			while (rs.next()) {
-				int idx=rs.getInt("idx");
-				String sanpum=rs.getString("sanpum");
-				String color=rs.getString("color");
-				int cnt=rs.getInt("cnt");
-				
-				Date guipday=rs.getDate("guipday");
-				
-				
-				
-				System.out.println("번호: " + idx+ ", 상품명 : " + sanpum + ", 색: " + color + ", 개수: " + cnt + ", "
-						+ "구입날짜: " + guipday);
+			while(rs.next())
+			{
+				System.out.println(rs.getInt("idx")+"\t"+rs.getString("sangpum")
+				+"\t"+rs.getString("color")+"\t"+rs.getInt("cnt")+"\t"
+						+rs.getDate("guipday"));
 			}
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-			System.out.println("failed");
-		}finally {
-			
-				try {
-					if(rs!=null) rs.close();
-					if(stmt!=null) stmt.close();
-					if(conn!=null) conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			System.out.println("실패");
 		}
-		
 		
 	}
 	
-
-		
-		
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		ConnectTestEx3 ct=new ConnectTestEx3();
-		ct.connectShop();
-		
-		
+			ConnectTestEx3 ex3=new ConnectTestEx3();
+			ex3.shopCart();
 	}
 
 }
