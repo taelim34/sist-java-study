@@ -1,0 +1,26 @@
+package day0321;
+
+import java.util.Scanner;
+
+import day0319.DBConnect;
+
+public class StuInfo {
+	
+	
+	DBConnect db=new DBConnect();
+	Scanner sc = new Scanner(System.in);
+	
+	public void insertStuInfo()
+	{
+		
+		
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StuInfo si=new StuInfo();
+		Scanner sc=new Scanner(System.in);
+	}
+
+}

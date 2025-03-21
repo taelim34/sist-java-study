@@ -1,3 +1,5 @@
+Container cp;
+
 public SwingEx1(String title) {
 		super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
 		

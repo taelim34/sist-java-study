@@ -1,0 +1,89 @@
+package day0321;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import day0319.DBConnect;
+
+public class StuInfo {
+	
+	
+	DBConnect db=new DBConnect();
+	Scanner sc = new Scanner(System.in);
+	
+	public void insertStuInfo()
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		System.out.println("학생명?");
+		String stu_name=sc.nextLine();
+		System.out.println("주소?");
+		String stu_addr=sc.nextLine();
+		System.out.println("혈액형?");
+		String stu_blood=sc.nextLine();
+		System.out.println("전화번호?");
+		String stu_hp=sc.nextLine();
+		System.out.println("학년?");
+		int stu_grade=Integer.parseInt(sc.nextLine());
+		System.out.println("나이?");
+		int stu_age=Integer.parseInt(sc.nextLine());
+		
+		String sql="insert into stuinfo values(seq_test.nextval,?,?,?,?,?,?,sysdate)";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, stu_name);
+			pstmt.setString(2, stu_addr);
+			pstmt.setString(3, stu_blood);
+			pstmt.setString(4, stu_hp);
+			pstmt.setInt(5, stu_grade);
+			pstmt.setInt(6, stu_age);
+			
+			
+			int n=pstmt.executeUpdate();
+			
+				if(n==1)
+					System.out.println("인서트 성공");
+				else
+					System.out.println("인서트 실패");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StuInfo si=new StuInfo();
+		Scanner sc=new Scanner(System.in);
+		
+		
+		int n;
+		while(true)
+		{
+			
+			System.out.println("**상품입고**");
+			System.out.println("1.학생정보 입력 2.학생정보 출력  3.학생정보 삭제  4.학생정보 수정 5.학생검색(성) 9.종료");
+			n=Integer.parseInt(sc.nextLine());
+			
+			if(n==1)
+				si.insertStuInfo();
+			if(n==9)
+			{
+				System.out.println("종료");
+				break;
+			}
+			
+		}
+	}
+
+}

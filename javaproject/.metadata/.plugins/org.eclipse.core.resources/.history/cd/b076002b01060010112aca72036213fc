@@ -1,0 +1,141 @@
+package day0321;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import day0319.DBConnect;
+
+public class StuInfo {
+	
+	
+	DBConnect db=new DBConnect();
+	Scanner sc = new Scanner(System.in);
+	
+	public void insertStuInfo()
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		System.out.println("학생명?");
+		String stu_name=sc.nextLine();
+		System.out.println("주소?");
+		String stu_addr=sc.nextLine();
+		System.out.println("혈액형?");
+		String stu_blood=sc.nextLine();
+		System.out.println("전화번호?");
+		String stu_hp=sc.nextLine();
+		System.out.println("학년?");
+		int stu_grade=Integer.parseInt(sc.nextLine());
+		System.out.println("나이?");
+		int stu_age=Integer.parseInt(sc.nextLine());
+		System.out.println("생일은?");
+		String birth=sc.nextLine();
+		
+		String sql="insert into stuinfo values(seq_test.nextval,?,?,?,?,?,?,?,sysdate)";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, stu_name);
+			pstmt.setString(2, stu_addr);
+			pstmt.setString(3, stu_blood);
+			pstmt.setString(4, stu_hp);
+			pstmt.setInt(5, stu_grade);
+			pstmt.setInt(6, stu_age);
+			pstmt.setString(7, birth);
+			
+			
+			int n=pstmt.executeUpdate();
+			
+				if(n==1)
+					System.out.println("인서트 성공");
+				else
+					System.out.println("인서트 실패");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+		
+	}
+	
+	public void selectStuInfo()
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from stuinfo order by stu_no";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			System.out.println("시퀀스\t학생명\t주소\t\t혈액형\t전화번호\t\t학년\t나이\t생일");
+			System.out.println("==============================================================================================");
+			
+			while(rs.next())
+			{
+				System.out.println(rs.getInt("stu_no")+"\t"+rs.getString("stu_name")+"\t"+rs.getString("stu_addr")
+				+"\t"+rs.getString("stu_blood")+"\t"+rs.getString("stu_hp")+"\t"+rs.getInt("stu_grade")+"\t"
+				+rs.getInt("stu_age")+"\t"+rs.getString("birth")+rs.getDate("writeday"));	
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+	}
+	
+	public void deleteStuInfo()
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		System.out.println("삭제할 학생번호는?");
+		int num=Integer.parseInt(sc.nextLine());
+		
+		String sql="delete from stuinfo where stu_no=?";
+		
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StuInfo si=new StuInfo();
+		Scanner sc=new Scanner(System.in);
+		
+		
+		int n;
+		while(true)
+		{
+			
+			System.out.println("**상품입고**");
+			System.out.println("1.학생정보 입력 2.학생정보 출력  3.학생정보 삭제  4.학생정보 수정 5.학생검색(성) 9.종료");
+			n=Integer.parseInt(sc.nextLine());
+			
+			if(n==1)
+				si.insertStuInfo();
+			if(n==2)
+				si.selectStuInfo();
+			if(n==9)
+			{
+				System.out.println("종료");
+				break;
+			}
+			
+		}
+	}
+
+}

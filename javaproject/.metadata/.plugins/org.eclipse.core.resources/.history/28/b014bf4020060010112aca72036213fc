@@ -1,0 +1,79 @@
+package day0321;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import day0319.DBConnect;
+
+public class SawonDbSwing extends JFrame implements ItemListener,ActionListener{
+	
+	JTable table;
+	DefaultTableModel model;
+	JRadioButton [] rb=new JRadioButton[6];
+	JButton btnAdd,btnDel;
+	Container cp;
+	
+	public SawonDbSwing(String title) {
+		super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+		
+		//위치 너비
+		this.setBounds(1200, 100, 700, 800);
+				
+		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		cp.setBackground(Color.white);
+		initDesign();
+		this.setVisible(true);
+	}
+	
+	//디자인
+	public void initDesign()
+	{
+		this.setLayout(null);
+		
+		//table추가
+		String [] title= {"번호","ID","사원명","성별","부서명","월급여"};
+		model =new DefaultTableModel(title, 0); //제목만 일단 넣고 행갯수는 0으로추가
+		table=new JTable(model);
+		
+		table.getColumnModel().getColumn(0).setPreferredWidth(10);//셀 너비 조절
+		table.getColumnModel().getColumn(1).setPreferredWidth(10);
+		
+		JScrollPane js=new JScrollPane(table);
+		js.setBounds(10, 100, 680, 580);
+		this.add(js);
+		
+		
+	}
+
+	public static void main(String[] args) {
+		
+		SawonDbSwing sw1 = new SawonDbSwing("스윙기본 #1");
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// 추가버튼,삭제버튼
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// 라디오버튼 제어
+		
+	}
+	
+}
