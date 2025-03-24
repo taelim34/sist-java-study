@@ -112,7 +112,7 @@ public class SawonDbSwing extends JFrame implements ItemListener,ActionListener{
 		String sql="";
 		
 		if(select==1)
-			sql="select ROWNUM no,num id,name,gender,buseo,to_char(pay,'L999,999,999') pay from sawon";
+			sql="select ROWNUM no,num id,name,gender,buseo,to_char(pay,'L999,999,999') pay from sawon ";
 		else if(select==2)
 			sql="select ROWNUM no,num id,name,gender,buseo,to_char(pay,'L999,999,999') pay from sawon where gender='남자'";
 		else if(select==3)
@@ -177,7 +177,55 @@ public class SawonDbSwing extends JFrame implements ItemListener,ActionListener{
 		
 		if(ob==btnDel)
 		{
+			//행번호 얻기
+			int row=table.getSelectedRow();
+			System.out.println(row);
 			
+			//선택안했을경우
+			if(row==-1)
+			{
+				JOptionPane.showMessageDialog(this, "삭제할 행을 먼저 선택해주세요");
+				return;
+			}
+			
+			//선택한 행의 id(num)얻기
+			String num=(String)model.getValueAt(row, 1);
+			System.out.println(num);
+			
+			//db데이터 삭제 테이블을 다시출력(전체)
+			sql="delete from sawon where num=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, num);
+				
+				//실행
+				pstmt.execute();
+				
+				this.sawonTableSelect(1);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			/*String num=JOptionPane.showInputDialog("삭제할 시퀀스를 입력해주세요");
+			
+			sql="delete from sawon where num = ?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, num);
+				pstmt.execute();
+				
+				this.sawonTableSelect(1);
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
 		}else if(ob==btnAdd)
 		{
 			String name=JOptionPane.showInputDialog("사원명을 입력해주세요");

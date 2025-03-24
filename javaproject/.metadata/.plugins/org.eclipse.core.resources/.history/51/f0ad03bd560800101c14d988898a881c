@@ -1,0 +1,67 @@
+package day0324;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import day0310.SwingEx1;
+
+public class AddScore extends JFrame{
+
+	Container cp;
+	JTextField tfName,tfJava,tfJsp,tfSpring;
+	JComboBox<String> cbBan;
+	JButton btnAdd;
+
+	public AddScore(String title) {
+			super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+			
+			//위치 너비
+			this.setBounds(500, 100, 300, 350);
+					
+			cp=this.getContentPane();
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			cp.setBackground(Color.lightGray);
+			initDesign();
+			this.setVisible(true);
+		}
+	
+		public void initDesign()
+		{
+			this.setLayout(null);
+			JLabel title1=new JLabel("학생명");
+			JLabel title2=new JLabel("반");
+			JLabel title3=new JLabel("Java");
+			JLabel title4=new JLabel("Jsp");
+			JLabel title5=new JLabel("Spring");
+			
+			title1.setBounds(30, 20, 60, 30);
+			this.add(title1);
+			
+			title2.setBounds(30, 70, 60, 30);
+			this.add(title2);
+			
+			title3.setBounds(30, 120, 60, 30);
+			this.add(title3);
+			
+			title4.setBounds(30, 170, 60, 30);
+			this.add(title4);
+			
+			title5.setBounds(30, 220, 60, 30);
+			this.add(title5);
+		}
+
+		public static void main(String[] args) {
+			
+			AddScore sw1 = new AddScore("성적 추가폼 #1");
+			
+			
+			
+		}
+
+}
