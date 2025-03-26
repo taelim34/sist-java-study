@@ -1,0 +1,30 @@
+package day0326;
+
+import javax.swing.JFrame;
+
+public class ShopAdd extends JFrame{
+
+	Container cp;
+
+	public ShopAdd(String title) {
+			super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+			
+			//위치 너비
+			this.setBounds(1200, 100, 600, 500);
+					
+			cp=this.getContentPane();
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			cp.setBackground(Color.white);
+			
+			this.setVisible(true);
+		}
+
+		public static void main(String[] args) {
+			
+			new ShopAdd("스윙기본 #1");
+			
+			
+			
+		}
+
+}

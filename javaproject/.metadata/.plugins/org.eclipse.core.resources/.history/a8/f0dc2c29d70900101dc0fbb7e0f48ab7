@@ -1,0 +1,38 @@
+package day0326;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+import day0310.SwingEx1;
+
+public class Kiosk extends JFrame{
+
+	
+	Container cp;
+
+	public Kiosk(String title) {
+			super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+			
+			//위치 너비
+			this.setBounds(1200, 100, 1000, 500);
+					
+			cp=this.getContentPane();
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			cp.setBackground(Color.white);
+			
+			this.setVisible(true);
+		}
+
+		public static void main(String[] args) {
+			
+			new Kiosk("***kiosk***");
+			
+			
+			
+		}
+	
+	
+	
+}

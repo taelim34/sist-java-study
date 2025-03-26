@@ -1,0 +1,43 @@
+package day0326;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class ShopMain extends JFrame{
+
+	Container cp;
+	JButton btnAdd,btnDel,btnUpdate,btnSelect;
+	
+	
+
+	public ShopMain(String title) {
+			super(title);  //JFrame 부모생성자를 통해서 창제목을 통해서 제목을 보게하자
+			
+			//위치 너비
+			this.setBounds(1200, 100, 300, 300);
+					
+			cp=this.getContentPane();
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			cp.setBackground(Color.cyan);
+			initDesign();
+			this.setVisible(true);
+		}
+	
+		public void initDesign()
+		{
+			this.setLayout(new GridLayout(2, 2));
+		}
+
+		public static void main(String[] args) {
+			
+			new ShopMain("스윙기본 #1");
+			
+			
+			
+		}
+
+}
