@@ -1,4 +1,4 @@
-package day0319;
+package KIOSK;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,7 +21,7 @@ public class DBConnect {
 		
 		
 		try {
-			conn=DriverManager.getConnection(URL,"taelim" ,"a1234" );
+			conn=DriverManager.getConnection(URL,"taelim0619" ,"a1234" );
 						
 			
 			
