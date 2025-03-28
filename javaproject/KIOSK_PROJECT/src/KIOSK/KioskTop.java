@@ -2,6 +2,7 @@ package KIOSK;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -26,10 +27,10 @@ public class KioskTop implements ActionListener{
 	String [] buttonLabels1 = { "버튼 1", "버튼 2", "버튼 3", "버튼 4", "버튼 5", "버튼 6" };
 	Color [] buttonColors = { Color.ORANGE, Color.GREEN, Color.CYAN, Color.PINK };
 	Color [] buttonColors2= { Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,Color.WHITE,};
-	JTextField tf1,tf2,tf3,tf4,tf5,tf6;
 	JButton[] topButtons = new JButton[buttonLabels.length];
 	JButton[] menuButtons = new JButton[6];
 	Map<JButton, String> buttonImageMap = new HashMap<>();
+	Map<JButton, Integer> buttonIdxMap = new HashMap<>();
 	
 	
 	MenuDTO dto=new MenuDTO();
@@ -46,7 +47,7 @@ public class KioskTop implements ActionListener{
 		Border lineBorder = BorderFactory.createLineBorder(Color.black);
 		jpTop.setBorder(lineBorder);
 		
-		Font buttonFont = new Font("맑은고딕", Font.BOLD, 16);
+		Font buttonFont = new Font("맑은고딕", Font.BOLD, 20);
 		
 		for (int i = 0; i < buttonLabels.length; i++) {
             JButton btn = new JButton(buttonLabels[i]);
@@ -57,14 +58,15 @@ public class KioskTop implements ActionListener{
             
             topButtons[i] = btn;
         }
-		
 		jpMidle= new JPanel();
-		jpMidle.setBounds(0, 80, 900, 650);
-		jpMidle.setLayout(new GridLayout(2, 3, 120, 120));
+		//jpMidle.setBounds(0, 80, 900, 650);
+		//jpMidle.setLayout(new GridLayout(2, 3, 120, 120));
+		jpMidle.setBounds(30, 130, 820, 550);
+		jpMidle.setLayout(new GridLayout(2, 3, 100, 80));
 		jpMidle.setBackground(new Color(242, 209, 36));
 		//jpMidle.setBackground(Color.white);
-		Border lineBorder1 = BorderFactory.createLineBorder(Color.black);
-		jpMidle.setBorder(lineBorder1);
+		//Border lineBorder1 = BorderFactory.createLineBorder(Color.black);
+		//jpMidle.setBorder(lineBorder1);
 		
 		for (int i = 0; i < buttonLabels1.length; i++) {
             JButton btn = new JButton(buttonLabels1[i]);
@@ -115,14 +117,16 @@ public class KioskTop implements ActionListener{
 	            }
        
 	            String imagePath = buttonImageMap.get(btn);
+	            int idx = buttonIdxMap.get(btn);
 	            dto.setName(name);
 	            dto.setPrice(price);
 	            dto.setImage(imagePath);
+	            dto.setIdx(idx);
 	            
 
-	            System.out.println("선택된 물품: "+dto.getName() + ", 가격: "+dto.getPrice()+"원"+dto.getImage());
+	            System.out.println("선택된 물품: "+dto.getName() + ", 가격: "+dto.getPrice()+"원"+dto.getImage()+"idx: "+dto.getIdx());
 	            
-	            kb.createSelectedMenu(name, price, imagePath);
+	            kb.createSelectedMenu(name, price, imagePath, idx);
 	            
 	            break;
 	        }
@@ -146,7 +150,7 @@ public class KioskTop implements ActionListener{
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 
-	    String sql = "select name, price, image from kiosk_cafemenu where category=?";
+	    String sql = "select idx, name, price, image from kiosk_cafemenu where category=?";
 	    try {
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1, category);
@@ -157,10 +161,12 @@ public class KioskTop implements ActionListener{
 	            String name = rs.getString("name");
 	            int price = rs.getInt("price");
 	            String imagePath = rs.getString("image"); 
+	            int idx= rs.getInt("idx");
 	            
 
 	            ImageIcon icon = new ImageIcon(imagePath);
-	            Image img = icon.getImage().getScaledInstance(250, 240, Image.SCALE_SMOOTH);
+	            //Image img = icon.getImage().getScaledInstance(250, 240, Image.SCALE_SMOOTH);
+	            Image img = icon.getImage().getScaledInstance(200, 210, Image.SCALE_SMOOTH);
 	            icon = new ImageIcon(img);
 
 	            JButton btn = (JButton) jpMidle.getComponent(index);
@@ -171,6 +177,7 @@ public class KioskTop implements ActionListener{
 	            btn.setVisible(true);
 	            
 	            buttonImageMap.put(btn, imagePath);
+	            buttonIdxMap.put(btn, idx);
 
 	            index++;
 	        }

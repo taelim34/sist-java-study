@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
@@ -35,6 +38,8 @@ public class KioskBottom implements ActionListener
 	private int currentPage;
 	private int selectedSrcX = 30;
 	private int selectedSrcY = 40;
+	
+	DBConnect db = new DBConnect();
 	
 	Vector<SelectedMenu> sMenuContainer = new Vector<SelectedMenu>();
 	Vector<SelectedMenu> tempContainer = new Vector<SelectedMenu>();
@@ -80,9 +85,9 @@ public class KioskBottom implements ActionListener
 		createRemoveButtons();
 	}
 	
+	// 하단 메인 패널
 	private void createDefaultPanel()
 	{
-		// 패널
 		panel = new JPanel();
 		panel.setBounds(0, 730, 900, 1030);
 		panel.setBackground(new Color(220, 220, 220));
@@ -212,7 +217,7 @@ public class KioskBottom implements ActionListener
 		showSelectedMenu();
 	}
 	
-	public void createSelectedMenu(String name, int price, String img)
+	public void createSelectedMenu(String name, int price, String img, int idx)
 	{	
 		// 중복체크
 		boolean duplicate = false;
@@ -235,7 +240,7 @@ public class KioskBottom implements ActionListener
 		dto.setName(name);
 		dto.setPrice(price);
 		dto.setImage(img);
-		
+		dto.setIdx(idx);
 		
 		SelectedMenu sm = new SelectedMenu(dto, this);
 		
@@ -314,7 +319,7 @@ public class KioskBottom implements ActionListener
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		
 		lblTotalPay.setText(formatter.format(total) + "원");
-		System.out.println(total);
+		//System.out.println(total);
 	}
 	
 	@Override
@@ -329,6 +334,8 @@ public class KioskBottom implements ActionListener
 				currentPage--;
 				showSelectedMenu();
 			}
+			
+			System.out.println("currentPage : " + currentPage);
 		}
 		else if (ob == btnRight)
 		{
@@ -337,54 +344,83 @@ public class KioskBottom implements ActionListener
 				currentPage++;
 				showSelectedMenu();
 			}
+			
+			System.out.println("currentPage : " + currentPage);
 		}
 		else if (ob == btnRemove1)
 		{
-			SelectedMenu toRemove = sMenuContainer.get(0);
-			
-			
+			//SelectedMenu toRemove = sMenuContainer.get(0);
+			SelectedMenu toRemove = tempContainer.get(0);
+				
 		    // 패널에서 제거
 		    panel.remove(toRemove.getPanel());
 			
-			sMenuContainer.remove(0);
+			//sMenuContainer.remove(0);
+		    sMenuContainer.remove(toRemove);
 			
+		    // 하나 지웠으면 페이지 감소
+		    if (currentPage > 0)
+		    {   	
+		    	currentPage--;
+		    }
+		    
 			calculateTotal();
 			
 			panel.revalidate();
 			panel.repaint();
 			showSelectedMenu();
+			
+			System.out.println("currentPage : " + currentPage);
 		}
 		else if (ob == btnRemove2)
 		{
-			SelectedMenu toRemove = sMenuContainer.get(1);
-			
+			//SelectedMenu toRemove = sMenuContainer.get(1);
+			SelectedMenu toRemove = tempContainer.get(1);
 			
 		    // 패널에서 제거
 		    panel.remove(toRemove.getPanel());
 			
-			sMenuContainer.remove(1);
-			
+			//sMenuContainer.remove(1);
+		    sMenuContainer.remove(toRemove);
+		    
+		 // 하나 지웠으면 페이지 감소
+		    if (currentPage > 0)
+		    {   	
+		    	currentPage--;
+		    }
+		    
 			calculateTotal();
 			
 			panel.revalidate();
 			panel.repaint();
 			showSelectedMenu();
+			
+			System.out.println("currentPage : " + currentPage);
 		}
 		else if (ob == btnRemove3)
 		{
-			SelectedMenu toRemove = sMenuContainer.get(2);
-			
+			//SelectedMenu toRemove = sMenuContainer.get(2);
+			SelectedMenu toRemove = tempContainer.get(2);
 			
 		    // 패널에서 제거
 		    panel.remove(toRemove.getPanel());
 			
-			sMenuContainer.remove(2);
+			//sMenuContainer.remove(2);
+		    sMenuContainer.remove(toRemove);
 			
+		 // 하나 지웠으면 페이지 감소
+		    if (currentPage > 0)
+		    {   	
+		    	currentPage--;
+		    }
+		    
 			calculateTotal();
 			
 			panel.revalidate();
 			panel.repaint();
 			showSelectedMenu();
+			
+			System.out.println("currentPage : " + currentPage);
 		}
 		else if (ob == btnRemoveAll)
 		{
@@ -412,18 +448,21 @@ public class KioskBottom implements ActionListener
 			 if (result == JOptionPane.YES_OPTION) 
 			 {
 				 JOptionPane.showMessageDialog(null, "결제완료");
+				 
+				 // 장바구니 DB에 추가
+				 addToBasket();
+				 
 				 for(int i = 0; i < sMenuContainer.size(); i++)
-					{
-						panel.remove(sMenuContainer.get(i).getPanel());
-						panel.revalidate();
-					}
+				 {
+					 panel.remove(sMenuContainer.get(i).getPanel());
+					 panel.revalidate();
+				 }
+								
+				 sMenuContainer.clear();
+				 showSelectedMenu();
 					
-					
-					sMenuContainer.clear();
-					showSelectedMenu();
-					
-					calculateTotal();
-					panel.repaint();
+				 calculateTotal();
+				 panel.repaint();
 		     } 
 			 else if (result == JOptionPane.NO_OPTION) 
 		     {
@@ -431,6 +470,33 @@ public class KioskBottom implements ActionListener
 		     }
 		}
 		
+	}
+	
+	private void addToBasket()
+	{
+		
+		for (int i = 0; i < sMenuContainer.size(); i++)
+		{
+			Connection conn = db.getConnection();
+			PreparedStatement pstmt = null;
+			
+			int idx = sMenuContainer.get(i).getDTO().getIdx();
+			
+			String sql = "insert into KIOSK_BASKET values (SEQ_CAFE.nextval, ?, ?)";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				pstmt.setInt(2, sMenuContainer.get(i).getAmount());
+				
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				db.dbClose(pstmt, conn);
+			}
+			
+		}
 	}
 	
 	public JPanel getPanel()
