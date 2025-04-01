@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #boxa{
+            /*float속성은 left,right,none 가 있다
+            요소를 분리시킬수 있는데 중심속성이 없다
+            중심으로 분리시킬때는  margin:auto*/
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: #2493af;
+        }
+        #boxb{
+            float: right;
+            width: 200px;
+            height: 200px;
+            background-color: plum;
+        }
+        #boxc{
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            background-color: rgb(208, 230, 14);
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <div id="boxa">박스a</div>
+        <div id="boxb">박스 b</div>
+        <div id="boxc">박스 c</div>
+        </div>
+</body>
+</html>
