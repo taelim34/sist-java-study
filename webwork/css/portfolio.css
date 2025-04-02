@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box; /*테두리를 기준으로 정하는 크기,css줘도 박스사이즈 늘리지 않기*/
+}
+
+body{
+    background: #222;
+    height:  100%;
+    margin: 0;
+}
+
+#container{
+    position: absolute;
+    left: 50%;
+    margin-left: -450px;
+    width: 900px;
+    height: 100%;
+    background-color: #fff;
+}
+
+aside{
+    float: left;
+    height: 100%;
+    width: 300px;
+    padding: 20px 50px;
+    background: rgb(172, 159, 150);
+}
+
+#main{
+    float: right;
+    width: 580px;
+    height: 100%;
+    padding: 20ox;
+}
+aside>div>img{
+    border: 1px solid gray;
+    border-radius: 100px;
+}
