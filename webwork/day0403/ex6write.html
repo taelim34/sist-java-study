@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=100;
+        var b=100.5;
+
+        //typeOf:저장된 데이터의 타입
+        document.writeln(typeof(a)+"<br>"); //number
+        document.writeln(typeof(b)+"<br>"); //number
+        
+        //isNaN(Not a number) :문자일경우 true, 숫자일경우 false
+        document.writeln(isNaN(100)+"<br>"); //false
+        document.writeln(isNaN("Hello")+"<br>"); //true
+        document.writeln(isNaN("a100")+"<br>"); //true
+        document.writeln(isNaN("100")+"<br>"); //false
+
+        //현재날짜출력
+        var date=new Date();
+
+        document.writeln("year="+date.getFullYear()+"<br>");
+        //document.writeln("year="+(date.getYear()+1900)"<br>");  <--안씀
+        document.writeln("month="+(date.getMonth()+1)+"<br>");
+        document.writeln("day="+date.getDate()+"<br>");
+        document.writeln("day="+date.getDay()+"<br>"); //요일: 2 : 화요일
+
+        //오늘은 2025년 4월 3일 입니다
+        document.writeln("오늘은 "+date.getFullYear()+"년 "+(date.getMonth()+1)+"월 "+date.getDate()+"일 입니다<br>");
+
+        //숫자를 입력한후 isNaN을 통해서 숫자인지 아닌지
+        var inputNum=prompt("숫자를 입력하시오");
+
+        function checkNaN(inputNum)
+        {
+            //result=Number(inputNum);
+            result=inputNum;
+
+            if(isNaN(result)==true)
+                document.writeln("숫자가 아닙니다");
+            else
+                document.writeln("숫자가 맞습니다");
+        }
+
+        checkNaN(inputNum);  //isNaN은 NaN이면 true반환,NaN이 아니면 false
+    </script>
+</body>
+</html>
