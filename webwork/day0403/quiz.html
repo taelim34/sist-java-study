@@ -10,7 +10,7 @@
     <script>
         function buttonMina(){
             var btn=confirm("신민아를 출력할까요");
-            if(btn==1){
+            if(btn){
                 document.getElementById('result').innerHTML = '<img src="../연예인사진/17.jpg" alt="">';  
             }else{
                 alert("취소되었습니다");
@@ -18,7 +18,7 @@
         }
         function buttonSuji(){
             var btn=confirm("수지를 출력할까요");
-            if(btn==1){
+            if(btn){
                 document.getElementById('result').innerHTML = '<img src="../연예인사진/19.jpg" alt="">';  
             }else{
                 alert("취소되었습니다");
@@ -28,7 +28,7 @@
         window.onload=function(){
             document.getElementById('btnAin').onclick=function(){
                 var btn=confirm("유아인를 출력할까요");
-            if(btn==1){
+            if(btn){
                 document.getElementById('result').innerHTML = '<img src="../연예인사진/20.jpg" alt="">';  
             }else{
                 alert("취소되었습니다");
@@ -44,12 +44,13 @@
             left: 20px;
             top: 100px;
             background-color: bisque;
-            border: 1px solid gray;
+            /*border: 1px solid gray;*/
             padding: 10px;
             width: 500px;
             height: 600px;
             border-radius: 20px;
             overflow: hidden;
+            border-top: 10px solid;
         }
         #result img{
             width: 100%;
@@ -65,7 +66,7 @@
     <button type="button" class="btn btn-danger" onclick="buttonSuji()">수지</button>
     <button type="button" class="btn btn-warning" id="btnAin">유아인</button>
 
-    <div id="result" style="border: 1px solid gray;">출력공간</div>
+    <div id="result">출력공간</div>
 
     <!-- 과제
      신민아 버튼을 누르면 div에 신민아 사진출력

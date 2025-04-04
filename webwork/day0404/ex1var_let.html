@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Es6에서 추가된 기능들
+     1.블록범위 변수 let 와 const
+     2.탬플릿 리터럴 ``
+     3.화살표함수
+     5.클래스 상속
+     6.모듈개념추가-->
+     <h3 class="alert alert-danger">변수선언시 var,let의 이해</h3>
+     <script>
+        //let:영역형 변수
+        //var:함수형 변수
+        var a=10;
+        let b=20;
+
+        //상수형 변수
+        const MSG="Happy day!!"
+
+        console.log("a="+a);
+        console.log("b="+b);
+
+        console.log("MSG="+MSG);
+
+        //MSG="Nice day!!" 변경할수 없다는 오류가 나옴
+
+        if(true)
+        {
+            var a=30;
+            let b=40;
+            console.log("a="+a);
+            console.log("b="+b);
+        }
+
+        console.log("a="+a);
+        console.log("b="+b);
+     </script>
+        <h3 class="alert alert-danger">변수선언시 const의 이해</h3>
+     <script>
+        //json 형태의 데이터방식 
+        const pp={
+            "name":"홍길동",
+            "addr":"서울"
+        }
+
+        console.log("이름: "+pp.name);
+        console.log("주소: "+pp.addr);
+
+        //각각의 멤버변수 name,addr변경
+        pp.name="이수연";
+        pp.addr="경기";
+        console.log("이름: "+pp.name);
+        console.log("주소: "+pp.addr);
+
+        //전체를 변경시 오류가난다
+        pp={
+            "name":"이효리",
+            "addr":"제주"
+        }
+     </script>
+</body>
+</html>
