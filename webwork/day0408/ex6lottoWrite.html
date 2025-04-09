@@ -12,6 +12,8 @@
         //1~45사이의 난수구해서 배열에 넣고 ..중복숫자나오면 다시구하기
         window.onload=function(){
             document.getElementById("btnlotto").onclick=function(){
+
+                inter=setInterval(function(){
                 var out=document.getElementById("out");
                 for(var i=0;i<lotto.length;i++){
                     //1~45사이의 난수 발생시켜 배열에 넣기
@@ -45,12 +47,22 @@
                     s+="<div class='lotto'>"+lotto[i]+"</div>";
                 }
                 out.innerHTML=s;
+                },1000);
+            }
+        
+
+           //stop버튼
+           document.getElementById("btnstop").onclick=function(){
+                clearInterval(inter);
             }
         }
+        
+        
     </script>
 </head>
 <body>
     <button type="button" class="btn btn-outline-primary" id="btnlotto">로또숫자 구하기</button>
+    <button type="button" class="btn btn-outline-primary" id="btnstop">멈춤</button>
 
     <div id="out"></div>
 </body>
