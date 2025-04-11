@@ -30,17 +30,17 @@
 
     <h3>마우스를 올리면 이미지가 만화이미지 09번으로 되고 벗어나면 다시 자기 이미지로 돌아오기</h3>
 
-    <img src="../만화이미지/06.png" alt="">
-    <img src="../만화이미지/07.png" alt="">
-    <img src="../만화이미지/08.png" alt="">
+    <img src="../만화이미지/06.png" class="a">
+    <img src="../만화이미지/07.png" class="a">
+    <img src="../만화이미지/08.png" class="a">
     
     <script>
         var img='';
-        $("body>img").mouseover(function(){
+        $("body>img.a").mouseover(function(){
             img=$(this).attr("src")
             $(this).attr("src","../만화이미지/09.png");
         });
-        $("body>img").mouseout(function(){
+        $("body>img.a").mouseout(function(){
             $(this).attr("src",img);
         });
     </script>
