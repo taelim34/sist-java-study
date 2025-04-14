@@ -9,6 +9,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <link rel="stylesheet" href="../css/lottoStyle.css">
     <title>Document</title>
+    <style>
+        h2{
+            position: absolute;
+            top: 350px;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,13 +27,16 @@
                 let b=parseInt(Math.random()*255);
 
                 let rgbColor="rgb("+r+","+g+","+b+")";
-                $("div.lotto").mouseover(function(){
-                bg=$(this).css("background-color");
-                $("h2").text("배경색: "+bg);
-            });
                 $(this).css({
                     "background-color":rgbColor
                 });
+            });
+            $("div.lotto").mouseover(function(){
+                bg=$(this).css("background-color");
+                $("h2").text("배경색: "+bg);
+            });
+            $("div.lotto").mouseout(function(){
+                $("h2").text("색상 나오는곳");
             });
 
 
@@ -36,6 +45,6 @@
         
      </script>
     <div class="lotto"></div><div class="lotto"></div><div class="lotto"></div><div class="lotto"></div><div class="lotto"></div><div class="lotto"></div>
-    <h2>1</h2>
+    <h2 style="clear: both; margin-left: 30px;">색상 나오는곳</h2>
 </body>
 </html>

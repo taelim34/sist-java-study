@@ -13,13 +13,13 @@
     <button type="button" class="btn btn-warning">쇼핑몰사진(29~35)</button>
     <button type="button" class="btn btn-info">음식사진(3~12)</button>
     <button type="button" class="btn btn-danger">연예인사진(5~14)</button>
-    <div id="out"></div>
+    <div></div>
     <!-- 반복문으로 noimage 10개 넣어놓기
      그리고 버튼누를때 해당사진으로 10개씩 넣기-->
      <script>
-        for(let i=0;i<10;i++){
-           let noimg="<br><img src='../logoImg/no.png'>";
-           $("#out").append(noimg);
+        let noimg=`<img src='' width='200' height='200' border='1px' hspace='10' onerror="this.src='../logoImg/no.png'">`;
+        for(let i=1;i<=10;i++){
+           document.write(noimg); 
         };
 
 
