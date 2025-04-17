@@ -23,8 +23,8 @@
             //바디부분에는 이지은 그아래 이미지를 띄운다
 
             $(".subject").click(function(){
-                //$(this).attr("data-bs-toggle","modal")
-                //$(this).attr("data-bs-target","#myModal")
+                $(this).attr("data-bs-toggle","modal")
+                $(this).attr("data-bs-target","#myModal")
                 
 
                 var title=$(this).text();
@@ -34,8 +34,10 @@
                 $(".modal-title").text(title);
                 $(".modal-body").html("작성자:"+body+"<br>"+img);
 
-                var mo = new bootstrap.Modal($("#myModal"));
-                mo.show();
+                //var mo = new bootstrap.Modal($("#myModal"));
+                //mo.show();
+
+                //$("#myModal").modal('show');
 
             });
 
