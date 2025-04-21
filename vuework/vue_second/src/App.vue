@@ -2,7 +2,7 @@
   <div>
       <img alt="Vue logo" src="./assets/logo.png">
 
-      <div>
+      <div class="mdiv">
         <a class="menu" v-for="(menu,i) in menus" :key="i">{{ menu }}</a>
       </div>
 
@@ -63,18 +63,24 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 70px;
 }
 .menu{
   background-color: blue;
+  cursor: pointer;
+  margin: 5px;
+  border: 1px solid black;
 }
 a{
   color: white;
   padding: 10px;
 }
 .celeb{
-  width: 150px;
+  width: 300px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
+}
+.mdiv{
+  margin-top: 35px; 
 }
 </style>
