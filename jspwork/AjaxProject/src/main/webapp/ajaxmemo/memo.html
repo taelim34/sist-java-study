@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=East+Sea+Dokdo&family=Gowun+Batang&family=Nanum+Myeongjo&family=Stylish&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+div.memo{
+	position: absolute;
+	border: 0px solid gray;
+	font-family: 'Bagel Fat One';
+	font-size: 1.4em;
+}
+
+div.button{
+	left: 150px;
+	top: 30px;
+	width: 400px;
+	height: 100px;
+	border: 0px solid gray;
+	line-height: 100px;
+	text-align: center;
+
+}
+
+div.addform{
+	left: 100px;
+	top: 150px;
+	width: 500px;
+	height: 450px;
+	padding: 20px 20px;
+}
+
+img.select{
+	border: 2px solid red;
+}
+
+
+
+</style>
+<script type="text/javascript">
+	$(function(){
+		//처음로딩시
+		//list();
+		
+		//입력폼 안보이게
+		$("div.addform").hide();
+		$("div.updateform").hide();
+		
+		//메모추가버튼 누르면 입력폼 보이게
+		$("#btnadd").click(function(){
+			$("div.addform").slideToggle('slow');
+		});
+		
+		//이모티콘 2번인덱스에 select클래스 추가
+		$("img.emot").eq(2).addClass("select");
+		//이모티콘 2번인덱스의 src값 얻어서 input에 넣어주기
+		$("#emot").val($("img.emot").eq(2).attr("src"));
+		//이모티콘 선택시 값 변경하기
+		$("img.emot").click(function(){
+			$(this).siblings().removeClass("select");
+			$(this).addClass("select");
+			$("#emot").val($(this).attr("src"));
+		});
+		
+		//db저장
+		$("#dbsave").click(function(){
+			$.ajax({
+			
+				type:"get",
+				url:"memoInsert.jsp",
+				data: $("#addfrm").serialize(),
+				dataType:"html",
+				success:function(res){
+					
+					alert("메모가 저장되었습니다");
+					
+					list();
+				}
+			
+			});
+		})
+		
+		
+	});
+	
+	//리스트는 사용자함수로 만들고 필요할때 호출
+	function list(){
+		
+		
+	}
+	
+</script>
+</head>
+<body>
+<div class="memo button">
+	<button type="button" class="btn btn-info"
+	id="btnadd">메모추가</button>
+</div>
+
+<div class="memo addform">
+	<form id="addfrm">
+		<table class="table table-bordered">
+			<caption align="top"> <b>메모추가</b> </caption>
+			<tr>
+				<th class="table-warning">작성자</th>
+				<td>
+					<input type="text" class="form-control input-sm"
+					name="writer" id="writer" style="width: 150px;">
+				</td>
+			</tr>
+			
+			<tr>
+				<th class="table-warning">메모</th>
+				<td>
+					<textarea style="width: 300px;height: 100px;"
+					class="form-control input-sm"
+					name="content" id="content"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<th class="table-warning">이모티콘</th>
+				<td>
+				<input type="hidden" name="emot" id="emot">
+					<script type="text/javascript">
+						let s="";
+						for(let i=1;i<=10;i++)
+						{
+							s+="<img src='../image/avata/avata/b"+i+".png' width='50' class='emot'>";
+							if(i==5)
+							{
+								s+="<br>";
+							}
+						}
+						document.write(s);
+					</script>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<button type="button" id="dbsave">DB에 저장하기</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+	
+<div class="memo updateform">update</div>
+<div class="memo memo list">list</div>
+
+</body>
+</html>
