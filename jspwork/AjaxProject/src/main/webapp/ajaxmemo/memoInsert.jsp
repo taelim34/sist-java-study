@@ -11,7 +11,7 @@
 	request.setCharacterEncoding("utf-8");
 	//폼에서 넘긴값 읽기(writer,content,emot)
 	String writer=request.getParameter("writer");
-	String content=request.getParameter("content");
+	String content=request.getParameter("content");	
 	String emot=request.getParameter("emot");
 	
 	//dto로 묶어서

@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=East+Sea+Dokdo&family=Gowun+Batang&family=Nanum+Myeongjo&family=Stylish&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 div.memo{
 	position: absolute;
 	border: 0px solid gray;
-	font-family: 'Bagel Fat One';
+	font-family: 'East Sea Dokdo';
 	font-size: 1.4em;
 }
 
@@ -19,7 +20,6 @@ div.button{
 	top: 30px;
 	width: 400px;
 	height: 100px;
-	border: 0px solid gray;
 	line-height: 100px;
 	text-align: center;
 
@@ -33,17 +33,44 @@ div.addform{
 	padding: 20px 20px;
 }
 
+div.updateform{
+	left: 100px;
+	top: 150px;
+	width: 500px;
+	height: 450px;
+	padding: 20px 20px;
+}
+
 img.select{
 	border: 2px solid red;
 }
 
+div.list{
+	left: 800px;
+	top: 150px;
+	width: 700px;
+	height: 700px;
+	padding: 20px 20px;
+}
 
+span.writer{
+	font-weight: bold;
+}
+span.writeday{
+	float: right;
+	color: #bbb;
+}
+button.bi{
+    border: none;
+    background: none;
+    float: right;
+}
 
 </style>
 <script type="text/javascript">
 	$(function(){
 		//처음로딩시
-		//list();
+		list();
 		
 		//입력폼 안보이게
 		$("div.addform").hide();
@@ -65,29 +92,162 @@ img.select{
 			$("#emot").val($(this).attr("src"));
 		});
 		
-		//db저장
+		//insert db저장
 		$("#dbsave").click(function(){
 			$.ajax({
 			
-				type:"get",
+				type:"post",
 				url:"memoInsert.jsp",
 				data: $("#addfrm").serialize(),
 				dataType:"html",
 				success:function(res){
 					
 					alert("메모가 저장되었습니다");
+					//입력값 지우기..초기화
+					$("#writer").val("");
+					$("#content").val("");
+					
+					//선택한 이모티콘 클래스 제거
+					$("img.emot").removeClass("select");
+					//2번 이모티콘 클래스 추가
+					$("img.emot").eq(2).addClass("select");
+					//2번 src얻어서 input태그에 넣어주기
+					$("#emot").val($("img.emot").eq(2).attr("src"));
 					
 					list();
 				}
 			
 			});
-		})
+		});
 		
 		
 	});
 	
+	//삭제
+	$(document).on("click",".bi-trash",function(){
+		var num=$(this).attr("num");
+		//alert(num);
+		$.ajax({
+			type:"get",
+			dataType:"html",
+			url:"memoDelete.jsp",
+			data:{num:num},
+			success:function(){
+				
+				alert(num+"번 메모를 지웠습니다");
+				list();
+			}
+			
+		});		
+	});
+	
+	// 수정시 이모티콘 값 변경
+	$(document).on("click", "img.uemot", function(){
+	    // 다른 이모티콘의 select 클래스를 제거
+	    $(this).siblings().removeClass("select");
+	    // 현재 클릭된 이모티콘에 select 클래스를 추가
+	    $(this).addClass("select");
+	    // 해당 이모티콘의 src값을 hidden input에 설정
+	    $("#uemot").val($(this).attr("src"));
+	});
+	
+	
+	 //수정버튼 누르면 수정폼나오기,입력폼 숨기기
+	  $(document).on("click",".mod",function(){
+		  
+		  var num=$(this).attr("num");
+		  //alert(num);
+		  //폼의 unum에 num을 넣기
+		  $("#unum").val(num);
+		  
+		  $.ajax({
+			  type:"post",
+			  url:"memoOneData.jsp",
+			  data:{"num":num},
+			  dataType:"json",
+			  success:function(res){
+				  
+				  
+				  //수정폼의 태그안에 res로 넘어온 key값을 넣어준다
+				  $("#unum").val(res.num);
+				  $("#uwriter").val(res.writer);
+				  $("#ucontent").val(res.content);
+				  $("#uemot").val(res.emot);
+				  
+				  //해당이미지에 select클래스 추가
+				  $("img.uemot").each(function(i,ele){
+					  
+					  if($(this).attr("src")==res.emot)
+						  $(this).addClass("select");
+					  else
+						  $(this).removeClass("select");
+				  });
+				  
+				  
+				  
+				  //추가폼 숨기고 수정폼은 나타낸다
+				  $("div.addform").hide();
+				  $("div.updateform").show();
+			  }
+		  })
+		  
+	  });
+	 
+	  //수정
+	  $('#dbupdate').click(function(){
+		  
+		  var data=$("#updatefrm").serialize();
+		  alert(";;");
+		  
+		  $.ajax({
+			  
+			  type:"post",
+			  dataType:"html",
+			  url:"memoUpdate.jsp",
+			  data:data,
+			  success:function(){
+				  //수정성공시 목록 다시 출력
+				  //alert("성공");
+				  list();
+			  }
+		  });
+	  });
+	  
+	  
+
+	
 	//리스트는 사용자함수로 만들고 필요할때 호출
 	function list(){
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"memoList.jsp",
+			success:function(data){
+				//alert(data.length);
+				var s="";
+				var a="";
+				if(data.length==0){
+					a+="<h3 class='alert alert-info'>저장된 메모가 없습니다</h3>"
+				}else{
+					
+					$.each(data,function(i,elt){
+						s+="<table class='table'>"
+						s+="<tr height='100'><td>";
+						s+="<button type='button' class='bi bi-trash' num="+elt.num+"></button>";
+						s+="<button type='button' class='bi bi-pencil-square mod'num="+elt.num+"></button>";
+						s+="<span class='writer'>작성자:"+elt.writer+"</span>";
+						s+="<span class='writeday'>작성일:"+elt.writeday+"</span>";
+						s+="<pre>"+elt.content;
+						s+="<img src='"+elt.emot+"' align='right' width='80'>"
+						s+="</pre><td><tr></table>";
+					});
+				}
+				
+				$("div.list").html(s);
+			}
+		
+		});
 		
 		
 	}
@@ -126,7 +286,7 @@ img.select{
 				<td>
 				<input type="hidden" name="emot" id="emot">
 					<script type="text/javascript">
-						let s="";
+						var s="";
 						for(let i=1;i<=10;i++)
 						{
 							s+="<img src='../image/avata/avata/b"+i+".png' width='50' class='emot'>";
@@ -142,15 +302,64 @@ img.select{
 			
 			<tr>
 				<td colspan="2" align="center">
-					<button type="button" id="dbsave">DB에 저장하기</button>
+					<button type="button" class='btn btn-warning'id="dbsave">DB에 저장하기</button>
 				</td>
 			</tr>
 		</table>
 	</form>
 </div>
 	
-<div class="memo updateform">update</div>
-<div class="memo memo list">list</div>
+<div class="memo updateform">
+	<form id="updatefrm">
+	<!-- hidden:수정폼에서 가장중요 num을 폼안에 두어서 항상 같이 보낸다 -->
+	<input type="hidden" id="unum" name="unum">	
+		<table class="table table-bordered">
+			<caption align="top"> <b>메모수정</b> </caption>
+			<tr>
+				<th class="table-warning">작성자</th>
+				<td>
+					<input type="text" class="form-control input-sm"
+					name="uwriter" id="uwriter" style="width: 150px;">
+				</td>
+			</tr>
+			
+			<tr>
+				<th class="table-warning">메모</th>
+				<td>
+					<textarea style="width: 300px;height: 100px;"
+					class="form-control input-sm"
+					name="ucontent" id="ucontent"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<th class="table-warning">이모티콘</th>
+				<td>
+				<input type="hidden" name="uemot" id="uemot">
+					<script type="text/javascript">
+						var s="";
+						for(let i=1;i<=10;i++)
+						{
+							s+="<img src='../image/avata/avata/b"+i+".png' width='50' class='uemot'>";
+							if(i==5)
+							{
+								s+="<br>";
+							}
+						}
+						document.write(s);
+					</script>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<button type="button" class='btn btn-warning'id="dbupdate">DB 수정하기</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div class="memo list">list</div>
 
 </body>
 </html>

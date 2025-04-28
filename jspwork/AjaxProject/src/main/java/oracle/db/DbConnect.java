@@ -26,7 +26,7 @@ static final String OracleDriver="oracle.jdbc.OracleDriver";
    }
 	
 	//오라클계정연결
-	public Connection getConnecton()
+	public Connection getConnection()
 	{
 		Connection conn=null;
 		

@@ -1,6 +1,6 @@
 package ajaxmemo;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class MemoDto {
 	
