@@ -22,4 +22,7 @@
 	MemoDao dao=new MemoDao();
 	//수정메서드 호출
 	dao.updateMemo(dto);
+	out.print("success");
 %>
+
+
