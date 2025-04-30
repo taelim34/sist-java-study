@@ -81,7 +81,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="	" value="db저장" class="btn btn-outline-info">
+					<input type="submit" value="db저장" class="btn btn-outline-info">
 					<input type="button" value="목록가기" class="btn btn-outline-success"
 					onclick="location.href='gaipList.jsp'">
 				</td>
