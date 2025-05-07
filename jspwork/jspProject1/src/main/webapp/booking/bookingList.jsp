@@ -62,7 +62,7 @@ div {
 			
 			<tr>
     		   <td><%=list.size()- i %></td>
-    		   <td><%=dto.getName() %></td>
+    		   <td><img  src="../image/bookingimg/<%=dto.getGender().equalsIgnoreCase("m")?"man":"girl"%>.png" width="40"> <%=dto.getName() %></td>
     		   <td><%=dto.getInwon() %></td>
     		   <td><%=dto.getBookday().replaceAll("T", " ") %>분</td>
     		   <td>

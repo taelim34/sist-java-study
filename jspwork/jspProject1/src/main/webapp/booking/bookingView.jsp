@@ -82,8 +82,13 @@ div {
   	  <td><%=sdf.format(dto.getWriteday()) %>분</td>
   	</tr>
   	<tr>
+  	  <th>메세지</th>
+  	  <td><%=dto.getMessage() %></td>
+  	</tr>
+  	<tr>
   	  <td colspan="5" align="center"><button type="button" onclick="location.href='bookingList.jsp'"
   	  class="btn btn-warning">돌아가기</button>
+  	  <button type="button" class="btn btn-info" onclick="location.href='bookingUpdateForm.jsp?num=<%=num%>'">수정하기</button>
   	  <button type="button" onclick="if(confirm('정말 예약을 취소하시겠습니까?')) location.href='deleteBooking.jsp?num=<%=num %>'"
   	  class="btn btn-danger">예약취소</button></td>
   	</tr>

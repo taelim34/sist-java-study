@@ -16,6 +16,7 @@
 	position: absolute;
 	top: 150px;
 	left: 600px;
+	background-color: white;
   }
 </style>
 <script type="text/javascript">
@@ -30,7 +31,7 @@
 </head>
 <body>
   <div style="margin: 100px 100px; width: 800px;">
-  
+  <h2>예약하기</h2>
   <!-- onsubmit이벤트는 action이 호출되기 전에 발생
   리턴값을 false로 받으면 action이 호출되지 않는다 -->
 	<form action="addAction.jsp" method="post" onsubmit="return check()">
@@ -49,12 +50,12 @@
 	      <td>
 	        <label>
 	          <input type="radio" name="gender" value="m">
-	          <img alt="" src="../image/bookingimg/man.jpg" width="50">
+	          <img alt="" src="../image/bookingimg/man.png" width="50">
 	        </label>
 	        &nbsp;
 	        <label>
 	          <input type="radio" name="gender" value="g">
-	          <img alt="" src="../image/bookingimg/girl.jpg" width="50">
+	          <img alt="" src="../image/bookingimg/girl.png" width="50">
 	        </label>
 	        &nbsp;
 	      </td>
@@ -90,15 +91,15 @@
 	        </label>
 	        <label>
 	          <input type="checkbox" name="food" value="에그덮밥.jpg,12000">에그덮밥<br>
-	          <img alt="" src="../image/bookingimg/갈비찜.jpg" width="80" height="80">
+	          <img alt="" src="../image/bookingimg/에그덮밥.jpg" width="80" height="80">
 	        </label>
 	        <label>
 	          <input type="checkbox" name="food" value="망고샤벳.jpg,26000">망고샤벳<br>
 	          <img alt="" src="../image/bookingimg/망고샤벳.jpg" width="80" height="80">
 	        </label>
 	        <label>
-	          <input type="checkbox" name="food" value="스팸에그덮밥.jpg,15000">스팸에그덮밥<br>
-	          <img alt="" src="../image/bookingimg/스팸에그덮밥.jpg" width="80" height="80">
+	          <input type="checkbox" name="food" value="스팸덮밥.jpg,15000">스팸덮밥<br>
+	          <img alt="" src="../image/bookingimg/스팸덮밥.jpg" width="80" height="80">
 	        </label>
 	      </td>
 	    </tr>
