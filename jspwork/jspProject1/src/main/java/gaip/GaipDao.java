@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import org.eclipse.jdt.internal.compiler.ast.ReturnStatement;
 
 import oracle.db.DbConnect;
 
