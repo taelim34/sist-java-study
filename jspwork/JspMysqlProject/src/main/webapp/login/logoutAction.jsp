@@ -1,4 +1,3 @@
-<%@page import="mysql.db.MymallDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,18 +11,10 @@
 </head>
 <body>
 <%
-	request.setCharacterEncoding("utf-8");
-
-	String num=request.getParameter("num");
-	
-	MymallDao dao=new MymallDao();
-	
-	dao.deleteSangpum(num);
-
-	response.sendRedirect("mallList.jsp");
-
+	//로그인에 대한 세션값 삭제
+	session.removeAttribute("loginok");
+	//메인으로 이동
+	response.sendRedirect("loginMain.jsp");
 %>
-
-
 </body>
 </html>

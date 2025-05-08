@@ -15,6 +15,14 @@ div {
 	margin-left: 80px;
 	margin-top: 80px;
 }
+td>div{
+	border: 1px solid gray;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin: 0px;
+	margin-left: 10px;
+}
 </style>
 </head>
 <%
@@ -27,8 +35,8 @@ div {
 %>
 <body>
 <div>
-	<h2 class="alert alert-success" style="width: 800px;"><%=dto.getNum() %>번 상품 상세보기</h2>
-	<table class="table table-bordered" style="width: 800px;">
+	<h2 class="alert alert-success" style="width: 600px;"><%=dto.getNum() %>번 상품 상세보기</h2>
+	<table class="table table-bordered" style="width: 600px;">
 		<tr>
 			<th>상품이미지</th>
 			<td><img src="../image/쇼핑몰사진/<%=dto.getPhoto()%>.jpg"> </td>
@@ -43,7 +51,7 @@ div {
 		</tr>
 		<tr>
 			<th>색상</th>
-			<td style="background-color: <%=dto.getColor() %>"></td>
+			<td style="vertical-align: middle;"><div style="background-color: <%=dto.getColor() %>"></div></td>
 		</tr>
 		<tr>
 			<th>입고일</th>
@@ -55,8 +63,10 @@ div {
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button type="button" class="btn btn-info">수정</button>
-				<button type="button" class="btn btn-danger">삭제</button>
+				<button type="button" class="btn btn-info"
+				onclick="location.href='updateForm.jsp?num=<%=num %>'">수정</button>
+				<button type="button" class="btn btn-danger"
+				onclick="if(confirm('취소하시겠습니까?')) location.href='delete.jsp?num=<%=num %>'">삭제</button>
 				<button type="button" class="btn btn-success"
 				onclick="location.href='mallList.jsp'">목록</button>
 			</td>

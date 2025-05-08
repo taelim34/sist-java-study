@@ -1,4 +1,4 @@
-package mysql.db;
+package mymall;
 
 import java.sql.Timestamp;
 

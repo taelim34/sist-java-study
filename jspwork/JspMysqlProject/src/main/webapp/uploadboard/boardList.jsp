@@ -1,4 +1,3 @@
-<%@page import="mysql.db.MymallDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,19 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	request.setCharacterEncoding("utf-8");
-
-	String num=request.getParameter("num");
-	
-	MymallDao dao=new MymallDao();
-	
-	dao.deleteSangpum(num);
-
-	response.sendRedirect("mallList.jsp");
-
-%>
-
-
+list
 </body>
 </html>

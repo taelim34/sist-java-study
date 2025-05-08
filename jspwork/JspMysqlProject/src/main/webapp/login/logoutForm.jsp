@@ -1,4 +1,4 @@
-<%@page import="mysql.db.MymallDao"%>
+<%@page import="login.loginDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,18 +12,21 @@
 </head>
 <body>
 <%
-	request.setCharacterEncoding("utf-8");
-
-	String num=request.getParameter("num");
-	
-	MymallDao dao=new MymallDao();
-	
-	dao.deleteSangpum(num);
-
-	response.sendRedirect("mallList.jsp");
-
+	//세션에 저장한 아이디를 읽어온다
+	String id=(String)session.getAttribute("idok");
+	//아이디에 해당하는 이름을 dao로 부터 얻기
+	loginDao dao=new loginDao();
+	String name=dao.getName(id);
 %>
+<br><br>
+<div style="margin: 100px 200px;">
+<b><%=name %> 님이 로그인 중 입니다</b>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" class="btn btn-danger btn-sm"
+onclick="location.href='logoutAction.jsp'">로그아웃</button>
+<br>
 
-
+<img alt="" src="../image/logoImg/img2.jpg">
+</div>
 </body>
 </html>
