@@ -1,8 +1,8 @@
+<%@page import="mymall.MymallDto"%>
+<%@page import="mymall.MymallDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.NumberFormat"%>
-<%@page import="mysql.db.MymallDto"%>
 <%@page import="java.util.List"%>
-<%@page import="mysql.db.MymallDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

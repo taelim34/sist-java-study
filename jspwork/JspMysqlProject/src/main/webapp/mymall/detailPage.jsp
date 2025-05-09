@@ -1,5 +1,5 @@
-<%@page import="mysql.db.MymallDao"%>
-<%@page import="mysql.db.MymallDto"%>
+<%@page import="mymall.MymallDto"%>
+<%@page import="mymall.MymallDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

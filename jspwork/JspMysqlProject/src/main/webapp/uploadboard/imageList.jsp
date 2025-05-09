@@ -33,16 +33,17 @@
 		<caption align="top"><b>게시판형 목록보기</b>
 			<button type="button" class="btn btn-warning"
 			onclick="location.href='addForm.jsp'" style="margin-left: 650px;">글쓰기</button>
-			<button type="button" class="btn btn-success" onclick="location.href='imageList.jsp'">앨범형 게시판</button>
+			<button type="button" class="btn btn-success" onclick="location.href='boardList.jsp'">목록형 게시판</button>
 		</caption>
 		
-		<tr class="table-success">
-			<th width="100">번호</th>
-			<th width="350">제목</th>
-			<th width="130">작성자</th>
-			<th width="180">작성일</th>
-			<th width="100">조회수</th>
+		<tr>
+			<td colspan="3">
+				<h2>전체글보기</h2>
+				<span><%=list.size() %>개의 글</span>
+			</td>
 		</tr>
+		
+		<tr>
 		<%
 		//날짜형식
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -50,24 +51,32 @@
 		for(int i=0;i<list.size();i++)
 		{
 			UploadDto dto=list.get(i); //i번째 dto얻기
+			if(i%3 == 0)
+			{
+			%>
+			<tr>
+			<%
+			}
+			%>
+			<td>
+				<a href="detailView.jsp?num=<%=dto.getNum() %>">
+					<img src="../save/<%=dto.getImgname()%>" style="width: 220px; height: 200px;">
+				</a>
+				<br>
+				<b><%=dto.getSubject() %></b><br>
+				<span style="font-size: 10pt; color: gray;" ><%=dto.getWriter() %></span><br>
+				<span style="font-size: 10pt; color: gray;"><%=sdf.format(dto.getWriteday()) %>  조회 <%=dto.getReadcount() %></span>
+			</td>
+				<%
+			if (i % 3 == 2 || i == list.size() - 1) 
+			{
+			    %>
+		  			</tr>
+			    <%
+			  }
+			}
 			%>
 			
-			<tr>
-				<td><%=list.size()-i %></td>
-				<!-- 제목클릭시 content 보기로 간다 -->
-				<td>
-					<a href="detailView.jsp?num=<%=dto.getNum() %>">
-						<%=dto.getSubject() %>
-					</a>
-				</td>
-				<td><%=dto.getWriter() %></td>
-				<td><%=sdf.format(dto.getWriteday()) %></td>
-				<td><%=dto.getReadcount() %></td>
-			</tr>
-			<%
-		}
-		
-		%>
 	</table>
 </div>
 </body>
