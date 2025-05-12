@@ -34,6 +34,9 @@
 		String content=multi.getParameter("content");
 		String pass=multi.getParameter("pass");
 		String imgname=multi.getFilesystemName("photo");
+		
+		//페이징 처리
+		String currentPage=multi.getParameter("currentPage");
 	
 		
 		UploadDto dto=new UploadDto();
@@ -49,7 +52,7 @@
 		if(flag)
 		{
 			dao.updateUpload(dto);
-			response.sendRedirect("detailView.jsp?num="+num);
+			response.sendRedirect("detailView.jsp?num="+num+"&currentPage="+currentPage);
 		}else
 		{%>
 			<script type="text/javascript">
@@ -60,7 +63,7 @@
 		<%}
 
 	}catch(Exception e){
-		
+		System.out.println("업로드 오류"+e.getMessage());
 	}
 	
 	
