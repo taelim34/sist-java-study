@@ -83,7 +83,12 @@ div button.btn{
 			
 		});
 		
-			$(document).on("click",".bi-trash",function(){
+		//댓글 삭제
+			$(document).on("click",".adel",function(){
+				
+				if (!confirm("정말 이 댓글을 삭제하시겠습니까?")) {
+			        return;
+			    }
 				
 				var idx=$(this).attr("idx");
 				$.ajax({
@@ -93,6 +98,77 @@ div button.btn{
 					data:{"idx":idx},
 					success:function(){
 						list();	
+					},
+					statusCode:{
+						404:function(){
+							alert("파일이 없습니다")
+						},
+						500:function(){
+							alert("서버오류...코드다시볼것!!")
+						}
+					}
+			});
+		});
+			
+		//수정창안보이게
+		$("div.aupdateForm").hide();
+		
+		//댓글 수정폼 나오게 하기
+			$(document).on("click",".mod",function(){
+				
+				$(".aform").hide();
+				$("div.aupdateForm").show();
+				var idx=$(this).attr("idx");
+				$.ajax({
+					type:"get",
+					url:"dtoAnswer.jsp",
+					dataType:"json",
+					data:{"idx":idx},
+					success:function(res){
+							$("#unickname").val(res.nickname);
+							$("#ucontent").val(res.content);
+							$("#idx").val(res.idx);
+					},
+					statusCode:{
+						404:function(){
+							alert("파일이 없습니다")
+						},
+						500:function(){
+							alert("서버오류...코드다시볼것!!")
+						}
+					}
+			});
+		});
+		
+		//댓글 수정
+		$(document).on("click","#btnuSend",function(){
+				
+				var nickname = $("#unickname").val().trim();
+           		var content = $("#ucontent").val().trim();
+           		var idx=$("#idx").val().trim();
+           		
+				$.ajax({
+					type:"get",
+					url:"updateAnswer.jsp",
+					dataType:"html",
+					data:{
+						"idx":idx,
+						"nickname":nickname,
+						"content":content
+					},
+					success:function(){
+						alert("수정완료");
+						list();
+						$("div.aupdateForm").hide();
+						$(".aform").show();
+					},
+					statusCode:{
+						404:function(){
+							alert("파일이 없습니다")
+						},
+						500:function(){
+							alert("서버오류...코드다시볼것!!")
+						}
 					}
 			});
 		});
@@ -102,7 +178,6 @@ div button.btn{
 	
 	function list()
 	{
-		
 		//댓글 출력
 		console.log("list num="+$("#num").val());
 		
@@ -123,16 +198,18 @@ div button.btn{
 					s+="<div>"+"<i class='bi bi-person-circle'></i>"
 					s+=item.nickname+": "+item.content;
 					s+="<span class='aday'>"+item.writeday+"</span>&nbsp;&nbsp;&nbsp;";
-					s+="<i class='bi bi-trash' idx='"+item.idx+"'></i>";
-					s+="<i class='bi bi-pencil-square'></i>";
+					s+="<i class='bi bi-trash adel' idx='"+item.idx+"'></i>";
+					s+="<i class='bi bi-pencil-square mod' idx='"+item.idx+"'></i>";
 					s+="</div>"
 				});
 				
 				$("div.alist").html(s);
 			}
 		});
-		
 	}
+	
+	
+	
 </script>
 </head>
 <%
@@ -180,13 +257,25 @@ div button.btn{
 				<div class="alist">
 					댓글목록
 				</div>
+				<!-- 입력창 -->
 				<div class="aform input-group">
 					<input type="text" id="nickname" class="form-control"
 					style="width: 100px;" placeholder="닉네임">
 					<input type="text" id="content" class="form-control"
 					style="width: 300px; margin-left: 10px;" placeholder="댓글메세지">
 					<button type="button" id="btnSend"
-					class="btn btn-info btn-sm" style="margin-left: 10px;">저장</button>
+					class="btn btn-info" style="margin-left: 10px;">저장</button>
+				</div>
+				
+				<!-- 수정창 -->
+				<div class="aupdateForm input-group">
+					<input type="hidden" id="idx" value="">
+					<input type="text" id="unickname" class="form-control"
+					style="width: 100px;" placeholder="닉네임">
+					<input type="text" id="ucontent" class="form-control"
+					style="width: 300px; margin-left: 10px;" placeholder="댓글메세지">
+					<button type="button" id="btnuSend"
+					class="btn btn-info" style="margin-left: 10px;">수정</button>
 				</div>
 			</td>
 		</tr>
