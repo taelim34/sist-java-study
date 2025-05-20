@@ -31,8 +31,10 @@
   
   //db삭제
   dao.deleteGuest(num);
-  //목록으로이동
-  response.sendRedirect("./index.jsp?main=guest/guestlist.jsp?currentPage="+currentPage);
 %>
+<script type="text/javascript">
+	/* 댓글 */
+	location.href="./index.jsp?main=guest/guestlist.jsp?currentPage=1"
+</script>
 </body>
 </html>

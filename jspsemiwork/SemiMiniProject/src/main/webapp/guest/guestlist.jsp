@@ -1,3 +1,6 @@
+<%@page import="data.dao.MemberDao"%>
+<%@page import="data.dto.GuestAnswerDto"%>
+<%@page import="data.dao.GuestAnswerDao"%>
 <%@page import="data.dto.GuestDto"%>
 <%@page import="data.dao.GuestDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -13,6 +16,35 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+		
+		$("div.answer").hide();
+		//댓글클릭시 댓글부분이 보였다/안보였다하기
+		$("span.answer").click(function(){
+			$(this).parent().find("div.answer").slideToggle();
+		});
+		
+		// 댓글 삭제 이벤트
+	    $(document).on("click", ".adel", function(){
+	    	
+	    	var idx = $(this).attr("data-idx");
+
+	        $.ajax({
+	            type: "post",
+	            url: "guest/answerdelete.jsp",
+	            dataType: "text",
+	            data: { idx: idx },
+	            success: function(res) {
+	                // 성공 후 해당 댓글 요소를 제거하거나 새로고침
+	                alert("댓글이 삭제되었습니다.");
+	                location.reload(); // 또는 댓글만 다시 불러오기
+	            }
+	        });
+	    });
+	        
+	});
+</script>
 </head>
 <%
   GuestDao dao=new GuestDao();
@@ -64,6 +96,9 @@
   //전체데이타
   List<GuestDto> list=dao.getList(startNum, perPage);
   
+  //세션 loginok
+  String loginok=(String)session.getAttribute("loginok");
+  String sessionid=(String)session.getAttribute("myid");
   
 %>
 <body>
@@ -92,7 +127,7 @@
 	           //이미지출력
 	             if(!dto.getPhoto().equals("no"))
 	             {%>
-	            	 <img alt="" src="../save/<%=dto.getPhoto()%>"
+	            	 <img alt="" src="./save/<%=dto.getPhoto()%>"
 	            	 style="width: 100px;">
 	             <%}
 	           %>
@@ -103,25 +138,95 @@
 	      </td>
 	    </tr>
 	    
+	    
 	    <tr>
 	      <td>
 	        <!-- 본인이 쓴글에만 수정삭제버튼 보이게... -->
 	        <%
-	          String loginok=(String)session.getAttribute("loginok");
-	          String sessionid=(String)session.getAttribute("myid");
 	          
 	          //로그인중이면서 로그인한 아이디와 글쓴아이디가 같을경우에만 보이게
 	          if(loginok!=null && sessionid.equals(dto.getMyid()))
 	          {%>
 	          <div style="float: right; font-size: 1.2em; color: green;">
 	        	 <i class="bi bi-trash" 
-	        	 onclick="location.href='delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
+	        	 onclick="location.href='./index.jsp?main=/guest/delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
 	        	  <i class="bi bi-pencil-square"></i>
 	          </div>
 	          <%}
 	        %>
 	      </td>
 	    </tr>
+	    
+	     <!-- 댓글 -->
+	    <tr>
+	    	<td>
+	    		<span class="answer" style="cursor: pointer;">댓글</span>
+	    		<div class="answer">
+	    			<%
+	    				if(loginok!=null){%>
+	    				
+	    					<div class="answerform">
+	    						<form action="guest/answerinsert.jsp" method="post">
+	    							<input type="hidden" name="num" value="<%=dto.getNum()%>">
+	    							<input type="hidden" name="myid" value="<%=sessionid%>">
+	    							<table>
+	    								<tr>
+	    									<td>
+	    										<textarea style="width: 470px; height: 60px;"
+	    										name="content" required="required"
+	    										class="form-control"></textarea>
+	    									</td>
+	    									<td>
+	    										<button type="submit" class="btn btn-info"
+	    										style="width: 70px; height: 70px;">등록</button>
+	    									</td>	    									
+	    								</tr>
+	    							</table>
+	    						</form>
+	    					</div>	
+	    				<%}
+	    			%>
+	    			<div class="answerlist">
+	    				<%
+	    					//댓글
+	    				  	GuestAnswerDao daoA=new GuestAnswerDao();
+	    					MemberDao daoM=new MemberDao();	
+	    				
+	    				  	List<GuestAnswerDto> listA=daoA.getAllGuestAnswer(dto.getNum());
+							for(GuestAnswerDto dtoA:listA){
+							//글작성자와 댓글쓴 작성자가 같을경우
+							if(dto.getMyid().equals(dtoA.getMyid())){%>
+									
+								<span style="color: red;">작성자</span>	
+							<%}
+							String nameA=daoM.getName(dtoA.getMyid());
+							%>
+								
+								<b><%=dtoA.getMyid()%> 이름:<%=nameA %></b>
+								<%
+									//댓글삭제는 본인댓글에만 보이게
+									if(loginok!=null && dtoA.getMyid().equals(sessionid))
+									{%>
+										<i class="bi bi-trash3 adel" style="font-size: 14pt; float: right;
+										margin-right: 10px; cursor: pointer;" data-idx="<%=dtoA.getIdx()%>"
+										id="Adel"></i>
+									<%}
+								%>
+								<br>
+								<span>내용:<%=dtoA.getContent().replaceAll("\n", "<br>") %></span><br>
+								<span style="font-size: 10pt; color: gray; float: right;"><%=dtoA.getWriteday() %></span>
+								<br> 
+								<hr>
+							<%
+							}
+	    					
+	    				%>
+	    			</div>
+	    		
+	    		</div>
+	    	</td>
+	    </tr>
+	    
 	    
 	  </table>
   <%}

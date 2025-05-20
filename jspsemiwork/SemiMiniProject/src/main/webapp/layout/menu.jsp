@@ -37,11 +37,13 @@
    //프로젝트 경로구해기
    String root=request.getContextPath();
 	
-	//로그인에 관한 세션
+	//로그인에관한 세션
 	String loginok=(String)session.getAttribute("loginok");
 	
 	//아이디세션
 	String myid=(String)session.getAttribute("myid");
+	
+	
 %>
 	<link rel="stylesheet" type="text/css" href="<%=root %>/menu/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="<%=root %>/menu/css/menu.css">
@@ -64,21 +66,18 @@
 						<a href="#">Member</a>
 						<ul class="sub-menu">
 						
-						
 						<%
 						  if(loginok!=null && myid.equals("admin")){%>
-							<li><a href="index.jsp?main=member/memberlist.jsp"><i class="icon-wrench"></i> 회원목록</a></li>  
+							  
+							  <li><a href="index.jsp?main=member/memberlist.jsp"><i class="icon-wrench"></i> 회원목록</a></li>
 						  <%}
 						%>
 							
 							
 							
-							
 							<li><a href="index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i>  회원가입</a></li>
 							<li><a href="index.jsp?main=member/mypage.jsp"><i class="icon-credit-card"></i>  마이페이지</a></li>
-						  
-							<li><a href="index.jsp?main=login/loginmain.jsp"><i class="icon-gift"></i>
-							<%=loginok==null?"로그인":"로그아웃" %></a></li>
+							<li><a href="index.jsp?main=login/loginmain.jsp"><i class="icon-gift"></i> 로그인</a></li>
 							
 						</ul>
 					</li>
@@ -92,7 +91,17 @@
 							
 						</ul>
 					</li>
-					<li><a href="<%=root%>/shop/shoplist.jsp">Shop</a></li>
+					<li><a href="<%=root%>/shop/shoplist.jsp">Shop</a>
+					   <ul class="sub-menu">
+							<li><a href="#">ShopForm</a></li>
+							<li><a href="#">ShoppingMall</a></li>
+							<li><a href="index.jsp?main=shop/map.jsp">오시는길</a></li>
+							
+						</ul>
+					
+					</li>
+					  
+					
 				</ul>
 			</nav>
 			<div class="clear"></div>

@@ -74,7 +74,7 @@
 <body>
 <div style="margin: 100px 200px;">
 <form action="member/memberupdate.jsp" method="post" onsubmit="return check(this)">
-  <input type="text" name="num" value="<%=dto.getNum()%>">
+  <input type="hidden" name="num" value="<%=dto.getNum()%>">
   <table class="table table-bordered" style="width: 500px;">
      <caption align="top"><b>회원가입</b></caption>
      <tr>
