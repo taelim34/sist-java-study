@@ -14,6 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Hi+Melody&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -28,7 +30,7 @@
 		// 댓글 삭제 이벤트
 	    $(document).on("click", ".adel", function(){
 	    	
-	    	var idx = $(this).attr("data-idx");
+	    	let idx = $(this).attr("data-idx");
 
 	        $.ajax({
 	            type: "post",
@@ -42,6 +44,49 @@
 	            }
 	        });
 	    });
+		
+	 // 댓글 수정 이벤트
+	    $(document).on("click", ".aedit", function(){
+	    	let idx=$(this).attr("data-idx");
+	    	
+	    	//alert(idx);
+	    	
+	    	$("#idx").val(idx);
+			
+			$.ajax({
+				
+				type:"get",
+				dataType:"json",
+				url:"guest/answercontent.jsp",
+				data:{"idx":idx},
+				success:function(res){
+					
+					$("#idx").val(res.idx);
+					$("#ucontent").val(res.story);
+				}
+			});
+	    });
+	 
+	 $("#btnupdate").click(function(){
+		 
+		 let content=$("#ucontent").val();
+		 let idx=$("#idx").val();
+		 	
+			 $.ajax({
+				
+				type:"post",
+				dataType:"html",
+				url:"guest/answerupdate.jsp",
+				data:{"idx":idx ,"content":content},
+				success:function(){
+					
+					alert("수정성공");
+					
+					location.reload();
+				}
+			});
+	 });
+			
 	        
 	});
 </script>
@@ -208,8 +253,10 @@
 									if(loginok!=null && dtoA.getMyid().equals(sessionid))
 									{%>
 										<i class="bi bi-trash3 adel" style="font-size: 14pt; float: right;
+										margin-right: 10px; cursor: pointer;" data-idx="<%=dtoA.getIdx()%>"></i>
+										<i class="bi bi-pencil-fill aedit" style="font-size: 14pt; float: right;
 										margin-right: 10px; cursor: pointer;" data-idx="<%=dtoA.getIdx()%>"
-										id="Adel"></i>
+										 data-bs-toggle="modal" data-bs-target="#gAnsEditModal"></i>
 									<%}
 								%>
 								<br>
@@ -275,9 +322,31 @@
        %>
      </ul>
      </div>
-     
+</div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="gAnsEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">댓글수정</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="updateform">
+        	<input type="hidden" id="idx" value="">
+           <input type="text" id="ucontent" class="form-control"
+           style="width: 350px;" value="">&nbsp;&nbsp;&nbsp; 
+           <button type="button" class="btn btn-primary" id="btnupdate">수정</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+       
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
