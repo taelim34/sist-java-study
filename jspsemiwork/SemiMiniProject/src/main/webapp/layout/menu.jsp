@@ -86,8 +86,8 @@
 						<a href="#">게시판</a>
 						<ul class="sub-menu">
 							<li><a href="#">Q&A 게시판</a></li>
-							<li><a href="<%=root%>/board/boardlist.jsp">고객게시판</a></li>
-							<li><a href="#">Smart게시판</a></li>
+							<li><a href="index.jsp?main=board/boardlist.jsp">답변형 고객게시판</a></li>
+							<li><a href="index.jsp?main=smart/selist.jsp">Smart게시판</a></li>
 							
 						</ul>
 					</li>
