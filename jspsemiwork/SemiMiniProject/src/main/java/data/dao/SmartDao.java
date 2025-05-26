@@ -16,19 +16,22 @@ public class SmartDao {
 	DbConnect db=new DbConnect();
 	
 	//insert
-	public void insertSmartBoard(SmartDto dto)
+	public void insertSmart(SmartDto dto)
 	{
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="insert into smartboard values(null,?,?,?,?,0,now())";
+		String sql="insert into smartboard(writer,subject,content,pass,writeday) values(?,?,?,?,now())";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			
+			//바인딩 
 			pstmt.setString(1, dto.getWriter());
 			pstmt.setString(2, dto.getSubject());
 			pstmt.setString(3, dto.getContent());
 			pstmt.setString(4, dto.getPass());
+						
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -38,10 +41,12 @@ public class SmartDao {
 		}
 	}
 	
-	//paging List
+	//List
 	public List<SmartDto> getAllDatas()
 	{
 		List<SmartDto> list=new Vector<SmartDto>();
+		
+		//그룹변수 내림차순 같은그룹인경우 step의 오름차순 정렬
 		String sql="select * from smartboard order by num desc";
 		
 		Connection conn=db.getConnection();
@@ -60,21 +65,22 @@ public class SmartDao {
 				dto.setWriter(rs.getString("writer"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
-				dto.setPass(rs.getString("pass"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setWriteday(rs.getTimestamp("writeday"));
 				
 				list.add(dto);
+				
+				
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			db.dbClose(rs, pstmt, conn);
 		}
+		
+		
 		return list;
 	}
-	//전체갯수반환
 	
 	//dto반환
 	public SmartDto getData(String num)
@@ -82,6 +88,7 @@ public class SmartDao {
 		SmartDto dto=new SmartDto();
 		
 		String sql="select * from smartboard where num=?";
+		
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -97,7 +104,6 @@ public class SmartDao {
 				dto.setWriter(rs.getString("writer"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setContent(rs.getString("content"));
-				dto.setPass(rs.getString("pass"));
 				dto.setReadcount(rs.getInt("readcount"));
 				dto.setWriteday(rs.getTimestamp("writeday"));
 				
@@ -109,28 +115,27 @@ public class SmartDao {
 			db.dbClose(rs, pstmt, conn);
 		}
 		
+		
 		return dto;
 	}
 	
-	//가장 최신에 추가된 글의 num 얻기 _getMaxNum
+	//가장최신에 추가된 글의 num얻기_getMaxNum
 	public int getMaxNum()
 	{
 		int max=0;
 		
+		String sql="select ifnull(max(num),0) max from smartboard";
+		
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
-		String sql="select ifnull(max(num),0) from smartboard;";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next())
-			{
 				max=rs.getInt(1);
-			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -139,34 +144,37 @@ public class SmartDao {
 			db.dbClose(rs, pstmt, conn);
 		}
 		
+		
 		return max;
 	}
 	
 	//readcount증가
-	public void updateReadCount(String num)
-	{
-		String sql="update smartboard set readcount=readcount+1 where num=?";
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, num);
-			pstmt.execute();
+	//디테일페이지에서 조회수1 증가해야 하므로
+		public void updateReadCount(String num)
+		{
+			String sql="update smartboard set readcount=readcount+1 where num=?";
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(pstmt, conn);
-		}
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, num);
+				pstmt.execute();
 				
-	}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				db.dbClose(pstmt, conn);
+			}
+			
+		}
+		
+	
+	//비밀번호비교
 	
 	//update
-	
-	//비밀번호 비교
 	
 	//delete
 }

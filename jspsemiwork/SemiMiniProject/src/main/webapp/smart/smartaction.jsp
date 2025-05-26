@@ -28,7 +28,7 @@
 	SmartDao dao=new SmartDao();
 	
 	int num=dao.getMaxNum();
-	dao.insertSmartBoard(dto);
+	dao.insertSmart(dto);
 	
 	response.sendRedirect("../index.jsp?main=smart/content.jsp?num="+num);
 %>
