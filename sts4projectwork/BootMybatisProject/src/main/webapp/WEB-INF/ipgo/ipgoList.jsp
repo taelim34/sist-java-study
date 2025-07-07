@@ -13,6 +13,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
+	<jsp:include page="../../layout/header.jsp"></jsp:include>
+</div>
+
 <div class="alert alert-success" style="width: 800px;">
 	<b>총 ${totalcount }개의 상품이 입고중입니다</b>
 </div>

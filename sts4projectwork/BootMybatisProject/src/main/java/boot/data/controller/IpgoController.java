@@ -24,21 +24,10 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class IpgoController {
 
-    private final BootMybatisProjectApplication bootMybatisProjectApplication;
-
 	@Autowired
 	IpgoMapperInter mapper;
 
-    IpgoController(BootMybatisProjectApplication bootMybatisProjectApplication) {
-        this.bootMybatisProjectApplication = bootMybatisProjectApplication;
-    }
 	
-	@GetMapping("/")
-	public String start()
-	{
-		
-		return "redirect:ipgo/list";
-	}
 	
 	@GetMapping("/ipgo/list")
 	public ModelAndView list()
