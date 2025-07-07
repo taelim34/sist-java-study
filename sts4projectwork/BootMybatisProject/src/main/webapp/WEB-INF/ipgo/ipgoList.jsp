@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Dongle&family=Nanum+Brush+Script&family=Orbit&family=Song+Myung&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="alert alert-success" style="width: 800px;">
+	<b>총 ${totalcount }개의 상품이 입고중입니다</b>
+</div>
+
+<table class="table table-bordered" style="width: 500px;">
+	<caption>
+		<span>
+			<button type="button" class="btn btn-info"
+			onclick="location.href='ipgoform'">상품추가</button>
+		</span>
+	</caption>
+	
+	<c:forEach var="dto" items="${list }">
+		<tr>
+			<td width="150" rowspan="4">
+				<c:if test="${dto.photoname!='no' }">
+					<c:forTokens var="pn" items="${dto.photoname }" delims="," begin="0" end="0">
+						<a><img src="../save/${pn }" style="width: 150px;" height="150px;"></a>
+					</c:forTokens>
+				</c:if>
+				<c:if test="${dto.photoname=='no' }">
+					<a><img src="../image/logoImg/no.png" style="width: 150px;" height="150px;"></a>
+				</c:if>
+			</td>
+			<td>
+				상품명:  ${dto.sangpum }
+			</td>
+		</tr>
+			<tr>
+				<td>
+					가격: ${dto.price }
+				</td>
+			</tr>
+			<tr>
+				<td>
+					입고일: ${dto.ipgoday }
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button type="button" class="btn btn-success"
+					onclick="location.href='updateform?num=${dto.num}'">수정</button>
+					<button type="button" class="btn btn-danger"
+					onclick="location.href='delete?num=${dto.num}'">삭제</button>
+				</td>
+			</tr>
+	</c:forEach>
+	
+</table>
+</body>
+</html>

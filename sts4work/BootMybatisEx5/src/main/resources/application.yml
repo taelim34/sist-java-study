@@ -1,0 +1,24 @@
+server:
+  port: 9001
+
+spring:
+  # Database (MySQL) Settings
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rain?serverTimezone=Asia/Seoul
+    username: taelim0619
+    password: a1234
+  # JSP Settings
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+  # Devtools Settings
+  devtools:
+    livereload:
+      enabled: true
+
+# Mybatis Settings
+mybatis:
+  type-aliases-package: boot.data.dto
+  mapper-locations: classpath:mapper/**/*.xml
