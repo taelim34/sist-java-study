@@ -11,4 +11,12 @@ public class MainController {
 	{
 		return "main/mainPage";
 	}
+	
+	
+	@GetMapping("/board/list")
+	public String boardlist()
+	{
+		return "board/boardList";
+	}
+	
 }
