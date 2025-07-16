@@ -35,7 +35,7 @@ public class BoardService {
 	}
 	public void insertBoard(@ModelAttribute BoardDto dto,HttpSession session)
 	{
-		String path=session.getServletContext().getRealPath("/membersave");
+		String path=session.getServletContext().getRealPath("/boardsave");
 		System.out.println(path);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
 		
@@ -69,12 +69,12 @@ public class BoardService {
 		
 		return mapper.getMaxNum();
 	}
-	public List<BoardDto> getAllList(String serchcolumn,String serchword,int startnum,int perpage)
+	public List<BoardDto> getAllList(String searchcolumn,String searchword,int startnum,int perpage)
 	{
 		Map<String, Object> map=new HashMap<>();
 		
-		map.put("serchword", serchword);
-		map.put("serchcolumn", serchcolumn);
+		map.put("searchword", searchword);
+		map.put("searchcolumn", searchcolumn);
 		map.put("startnum", startnum);
 		map.put("perpage", perpage);
 		

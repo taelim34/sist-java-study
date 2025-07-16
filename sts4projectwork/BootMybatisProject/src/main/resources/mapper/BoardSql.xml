@@ -4,7 +4,7 @@
 	<select id="getTotalCount" resultType="int" parameterType="Map">
 		select count(*) from memboard
 		<if test="searchcolumn!=null and searchword!=null">
-			where ${searchcolumn} like concat('%',#(searchword),"%")
+			where ${searchcolumn} like concat('%',#{searchword},"%")
 		</if>
 	</select>
 	<insert id="insertBoard" parameterType="memboard">
@@ -15,9 +15,27 @@
 	</select>
 	<select id="getAllList" parameterType="Map" resultType="memboard">
 		select * from memboard
-		<if test="searchcolumn!=null and searchword!=null">
-			where ${searchcolumn} like concat('%',#(searchword),"%")
-		</if>
+		<!-- <if test="searchcolumn!=null and searchword!=null">
+			where ${searchcolumn} like concat('%',#{searchword},"%")
+		</if> -->
+		<where>
+	        <if test="searchword != null and searchword != ''">
+	            <choose>
+	                <when test="searchcolumn == 'subject'">
+	                    subject like concat('%', #{searchword}, '%')
+	                </when>
+	                <when test="searchcolumn == 'content'">
+	                    content like concat('%', #{searchword}, '%')
+	                </when>
+	                <when test="searchcolumn == 'name'">
+	                    name = #{searchword}
+	                </when>
+	                <when test="searchcolumn == 'myid'">
+        				myid = #{searchword}
+    				</when>
+	            </choose>
+	        </if>
+    	</where>
 		order by num desc limit #{startnum},#{perpage}
 	</select>
 	<select id="getData" parameterType="String" resultType="memboard">

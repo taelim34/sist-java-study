@@ -30,6 +30,25 @@
 	   <button type="button" class="btn btn-info"
 	   onclick="location.href='addform'">글쓰기</button>
    </c:if>
+   <br><br>
+   <!-- 검색창 -->
+   <form action="list">
+      <div style="width: 700px;" class="input-group">
+         <select class="form-control" style="max-width: 150px;" name="searchcolumn">
+         	<option value="subject">제목</option>
+         	<option value="content">내용</option>
+         	<option value="name">작성자</option>
+         	<option value="myid">아이디</option>
+         </select>&nbsp;&nbsp;&nbsp;&nbsp;
+         
+         	<input type="text" name="searchword" class="form-control"
+         	style="width: 150px;">
+         	&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-danger">검색</button>
+            <button type="button" class="btn btn-warning"
+            onclick="location.href='list?searchcolumn=myid&searchword=${sessionScope.myid}'">내가 쓴글 보기</button>
+      </div>
+   </form>
    
    <br><br>
    <table class="table table-bordered" style="width: 1000px;">
@@ -52,8 +71,8 @@
 	   			<td>${no }</td>
 	   			<c:set var="no" value="${no-1 }"></c:set>
 	   			<td>
-	   				<a>${dto.subject }</a>
-	   				<c:if test="${dto.uploadfile!=null }">
+	   				<a href="detailpage?num=${dto.num }&currentPage=${currentPage}" style="">${dto.subject }</a>
+	   				<c:if test="${dto.uploadfile!='no' }">
 	   					<i class="bi bi-paperclip"></i>
 	   				</c:if>
 	   			</td>

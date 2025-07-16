@@ -12,8 +12,32 @@ layout:decorate="~{layout/layoutMain}">
 </head>
 <body>
 <div layout:fragment="content">
-  <h1>보드리스트 입니다</h1>
-  <img alt="" src="/image2/main2.png">
+  <h3>자동차 목록출력</h3>
+  <h5>총 [[${totalcount}]]개의 자동차 정보가 있습니다</h5>
+  <button type="button" class="btn btn-success"
+  onclick="location.href='addform'">자동차 등록</button>
+  
+  <!-- 번호 자동차명 색상 가격 구입일 -->
+  <table class="table table-bordered">
+  <caption></caption>
+  	<tr class="table-warning">
+  		<th>번호</th>
+  		<th>자동차명</th>
+  		<th>색상</th>
+  		<th>가격</th>
+  		<th>구입일</th>
+  	</tr>
+  	<tbody>
+  		<tr th:each="car, status : ${list}">
+  			<td th:text="${status.index + 1}"></td>
+  			<td><a th:text="${car.carname}" th:href="@{./detail(num=${car.num})}"></a></td>
+  			<td th:text="${car.carcolor}"></td>
+  			<td th:text="${car.carprice}"></td>
+  			<td th:text="${car.guipday}"></td>
+  		</tr>
+  		
+  	</tbody>
+  </table>
 </div>
 </body>
 </html>

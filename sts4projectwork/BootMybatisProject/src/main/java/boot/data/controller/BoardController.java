@@ -23,7 +23,7 @@ public class BoardController {
 	@GetMapping("/board/list")
 	public ModelAndView boardlist(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 			@RequestParam(value = "searchcolumn", required = false) String sc,
-			@RequestParam(value = "serchword", required = false) String sw) {
+			@RequestParam(value = "searchword", required = false) String sw) {
 		ModelAndView model = new ModelAndView();
 
 		// 페이징처리
@@ -71,7 +71,6 @@ public class BoardController {
 		model.addObject("no", no);
 		model.addObject("currentPage", currentPage);
 		
-		System.out.println("totalCount="+totalCount);
 		
 		model.setViewName("board/boardList");
 
@@ -87,5 +86,22 @@ public class BoardController {
 	public String insert(@ModelAttribute BoardDto dto, HttpSession session) {
 		service.insertBoard(dto, session);
 		return "redirect:list";
+	}
+	
+	@GetMapping("/board/detailpage")
+	public ModelAndView detailpage(@RequestParam String num,
+			@RequestParam(value = "currentPage", defaultValue = "1") int currentPage) 
+	{
+		ModelAndView model=new ModelAndView();
+		
+		//조회수
+		service.updateReadcount(num);
+		
+		BoardDto dto=service.getData(num);
+		
+		model.addObject("dto", dto);
+		model.addObject("currentPage", currentPage);
+		model.setViewName("board/detailPage");
+		return model;
 	}
 }
