@@ -8,6 +8,7 @@ import ThreeApp from './components/ThreeApp.jsx'
 import FourApp from './components/FourApp.jsx'
 import FiveApp from './components/FiveApp.jsx'
 import SixApp from './components/SixApp.jsx'
+import SevenApp from './components/SevenApp.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
