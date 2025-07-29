@@ -1,0 +1,40 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+*{
+
+}
+
+ul.menu{
+  list-style: none;
+  width: 700px;
+  margin-left: 100px;
+}
+ul.menu li{
+  float: left;
+  font-size: 25px;
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: 1px solid gray;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: beige;
+  color: gray;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px gray;
+  margin-bottom: 10px;
+}
+
+img.main_photo{
+  position: absolute;
+  top: 700px;
+  left: 100px;
+  width: 300px;
+}
+

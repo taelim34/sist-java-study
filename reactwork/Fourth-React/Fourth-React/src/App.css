@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+.line{
+  border: 3px solid gray;
+  padding: 5px;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.circle{
+  width: 60px;
+  height: 60px;
+  border: 1px solid gray;
+  border-radius: 100px;
+  float: left;
+  margin-right: 10px;
+  line-height: 60px;  
+}

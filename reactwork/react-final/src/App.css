@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@400;700&display=swap');
+
+body {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Quicksand', 'Montserrat', Arial, sans-serif;
+  color: #263238;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', 'Quicksand', Arial, sans-serif;
+  font-weight: 700;
+  color: #009688;
+  margin-bottom: 0.5em;
+}
+
+button, .MuiButton-root {
+  font-family: 'Montserrat', 'Quicksand', Arial, sans-serif;
+  background: #fff;
+  color: #009688;
+  border: 1.5px solid #4dd0e1;
+  border-radius: 8px;
+  padding: 0.6em 1.5em;
+  font-weight: 700;
+  font-size: 1.05em;
+  box-shadow: none;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+button:hover, .MuiButton-root:hover {
+  background: #4dd0e1;
+  color: #fff;
+  border: 1.5px solid #009688;
+}
+
+.card, .MuiPaper-root {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(76, 217, 235, 0.08);
+  padding: 2.5em 2em;
+  margin: 2em 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e0f7fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #4dd0e1;
+  border-radius: 8px;
+}

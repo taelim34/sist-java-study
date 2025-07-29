@@ -1,61 +1,39 @@
 import React, { useState } from 'react'
 import Alert from '@mui/material/Alert'; // Alert import 추가
 import CheckIcon from '@mui/icons-material/Check'; // CheckIcon import 추가
+import SixSubApp from './SixSubApp';
+import SixSubApp2 from './SixSubApp2';
+import SixSubApp3 from './SixSubApp3';
 
 const SixApp = () => {
 
-  const [names,setNames]=useState(['제니','리사','로제','지수']);
-  const [irum,setIrum]=useState('');
+  const [number,setNumber]=useState(0);
 
+  //증가하는 이벤트함수
+  const numberIncre=(e)=>{
+    setNumber(number+1);
+  }
 
-  //추가버튼이벤트
-  const btnInsert=()=>{
-    setNames(names.concat(irum));
-    setIrum('');
-  }
-  //입력change이벤트
-  const txtInput= (e) =>{
-    setIrum(e.target.value);
-  }
-  //enter이벤트
-  const txtEnter=(e)=>{
-    if(e.key==='Enter'){
-      btnInsert();
-      e.target.value='';
-    }
-  }
-  //더블클릭 삭제 이벤트
-  const dataRemove=(index)=>{
-    // //방법1
-    // setNames([
-    //   ...names.slice(0,index),
-    //   ...names.slice(index+1,names.length)
-    // ]);  //index번지만 빼고 잘라서 넣는다
-
-    //방법2
-    setNames(names.filter((item,i) => i !== index))
+  //감소하는 이벤트함수
+  const numberDecre=(e)=>{
+    setNumber(number-1);
   }
   return (
     <div>
-      <h1 className='alert alert-danger'>SixApp</h1>
       <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-        SixApp_추가/삭제 이벤트
+        SixApp입니다_부모자식간 컴포넌트 통신
       </Alert>
-      <div className='input-group'>
-        <input type="text" placeholder='이름을 입력해주세요' className='form-control'
-        value={irum} onChange={txtInput} onKeyUp={txtEnter} />
-        <button type='button' className='btn btn-info' style={{marginLeft:'5px'}}
-        onClick={btnInsert}>추가</button>
-      </div>
+      
+      <SixSubApp name="제니" age="22"/>
+      <SixSubApp name="지수" age="24"/>
+      <SixSubApp name="리사" age="21"/>
       <br /><br />
-      <h5>데이터를 더블클릭시 삭제됩니다</h5>
-      <ul>
-        {
-          names.map((name,index)=>(<li className='data' key={index}
-          onDoubleClick={() => dataRemove(index)}>{name}</li>))
-        }
-      </ul>
-
+      <SixSubApp2 menu="짜장면" price="12000" linecolor="green"/>
+      <SixSubApp2 menu="햄버거" price="6000" linecolor="purple"/>
+      <SixSubApp2 menu="파스타" price="18000" linecolor="red"/>
+      <br /><br />
+      <h1>{number}</h1>
+      <SixSubApp3 incre={numberIncre} decre={numberDecre} />
     </div>
   )
 }

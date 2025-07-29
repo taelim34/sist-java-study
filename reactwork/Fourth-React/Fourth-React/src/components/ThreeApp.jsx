@@ -2,29 +2,48 @@ import React, { useState } from 'react'
 
 const ThreeApp = () => {
   
-  const [photo,setPhoto]=useState('../image2/b2.png');
+  //객체처리변수
+  const [inputs,setInputs]=useState({
+    name:'제니',
+    addr:'서울시',
+    age:20
+  });
 
-  //이미지변경
-  const changePhoto = (e)=>{
-    setPhoto(e.target.value);
+  //3개공통함수
+  const chageData=(e)=>{
+    console.log("name"+e.target.name);
+    console.log("value"+e.target.value);
+    
+    //name,value값 얻기
+    //e.target이 갖고있는 객체 한번에 변경하기
+    const {name,value}=e.target;
+    setInputs({
+      ...inputs,  //기존의 멤버는 유지
+      [name]:value//해당값만 나오고 나머지는 사라진다..해결방법..펼침연산자
+    });
   }
-
   return (
 
     <div>
         <h1 className='alert alert-danger'>ThreeApp</h1>
 
-        <div>
-            <b>이모티콘선택</b>
-            <label><input type="radio" name='photo' value='../image2/b2.png' onClick={changePhoto} defaultChecked/>이미지1</label>&nbsp;&nbsp;
-            <label><input type="radio" name='photo' value='../image2/b3.png' onClick={changePhoto} />이미지2</label>&nbsp;&nbsp;
-            <label><input type="radio" name='photo' value='../image2/b4.png' onClick={changePhoto} />이미지3</label>&nbsp;&nbsp;
-            <label><input type="radio" name='photo' value='../image2/b5.png' onClick={changePhoto} />이미지4</label>&nbsp;&nbsp;
-            <label><input type="radio" name='photo' value='../image2/b6.png' onClick={changePhoto} />이미지5</label>&nbsp;&nbsp;
-            <label><input type="radio" name='photo' value='../image2/b7.png' onClick={changePhoto} />이미지6</label>&nbsp;&nbsp;
-        </div>
+        <span style={{fontSize:'25px'}}ThreeApp 입니다_state를 객체로></span>
 
-        <img src={photo} alt="" />
+        <h3 className='alert alert-info'>
+          이름: <input type="text" name='name' onChange={chageData} />
+        </h3>
+        <h3 className='alert alert-info'>
+          주소: <input type="text" name='addr' onChange={chageData} />
+        </h3>
+        <h3 className='alert alert-info'>
+          나이: <input type="text" name='age' onChange={chageData} />
+        </h3>
+
+        <hr />
+        <h2>이름:{inputs.name},{inputs['name']} </h2>
+        <h2>주소:{inputs.addr},{inputs['addr']} </h2>
+        <h2>나이:{inputs.age},{inputs['age']} </h2>
+
     </div>
   )
 }
